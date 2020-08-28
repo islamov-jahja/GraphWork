@@ -18,24 +18,24 @@ class Graph
 
     /**
      * @param string $name
-     * @param User|null $user
+     * @param int|null $userId
      * @param int|null $id
      * @param Vertex[] $vertexes
      */
-    public function __construct(string $name, ?User $user, ?int $id = null, array $vertexes = [])
+    public function __construct(string $name, ?int $userId, ?int $id = null, array $vertexes = [])
     {
         $this->id = $id;
         $this->name = $name;
         $this->vertexes = $vertexes;
-        $this->user = $user;
+        $this->user = $userId;
         $this->needToDelete = false;
         $this->needToSave = false;
     }
 
     /**
-     * @return User|null
+     * @return int|null
      */
-    public function getUser(): ?User
+    public function getUser(): ?int
     {
         return $this->user;
     }
@@ -66,6 +66,11 @@ class Graph
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function addVertex(Vertex $vertex)
+    {
+        $this->vertexes[] = $vertex;
     }
 
     /**
@@ -141,8 +146,8 @@ class Graph
     {
         $deletedEdges = [];
 
-        foreach ($this->vertexes as $edge){
-            $deletedEdges = array_merge($deletedEdges, $edge->getDeletedEdges());
+        foreach ($this->vertexes as $vertex){
+            $deletedEdges = array_merge($deletedEdges, $vertex->getDeletedEdges());
         }
 
         return $deletedEdges;

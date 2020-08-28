@@ -71,7 +71,9 @@ $config = [
             'rules' => [
                 'POST signup' => 'user/signup',
                 'POST login' => 'user/login',
-                'POST logout' => 'user/logout'
+                'POST logout' => 'user/logout',
+                'POST graph' => 'graph/create',
+                'DELETE graph/<id:\d+>' => 'graph/delete'
             ],
         ],
 

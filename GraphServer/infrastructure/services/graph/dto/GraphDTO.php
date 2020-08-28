@@ -9,7 +9,7 @@ use yii\base\Model;
 class GraphDTO extends Model
 {
     private $name;
-    public function __construct(string $name, $config = [])
+    public function __construct(?string $name, $config = [])
     {
         parent::__construct($config);
         $this->name = $name;
@@ -25,7 +25,7 @@ class GraphDTO extends Model
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }

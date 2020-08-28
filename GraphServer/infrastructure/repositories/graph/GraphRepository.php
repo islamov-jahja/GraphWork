@@ -19,6 +19,7 @@ class GraphRepository implements IGraphRepository
         if ($graph->needToSave()){
             $graphObject = new \app\infrastructure\persistance\Graph();
             $graphObject->name = $graph->getName();
+            $graphObject->user_id = $graph->getUser();
             $graphObject->save();
         }
 
@@ -72,6 +73,11 @@ class GraphRepository implements IGraphRepository
         }
     }
 
+    /**
+     * @param int $graphId
+     * @return Graph
+     * @throws NotFoundException
+     */
     public function getById(int $graphId): Graph
     {
         $graphObject = \app\infrastructure\persistance\Graph::findOne(['id' => $graphId]);
@@ -88,8 +94,7 @@ class GraphRepository implements IGraphRepository
         return $graph;
     }
 
-    private function saveVertexes(ActiveQuery $results, Graph )
+    private function saveVertexes(ActiveQuery $results, Graph $graph)
     {
-
     }
 }

@@ -10,13 +10,23 @@ class User
     private $password;
     private $email;
     private $token;
+    private $id;
 
-    public function __construct(string $name, string $password, string $email, ?string $token)
+    public function __construct(string $name, string $password, string $email, ?string $token, ?int $id = null)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->password = $password;
         $this->email = $email;
         $this->token = $token;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
     /**

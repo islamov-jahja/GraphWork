@@ -7,64 +7,52 @@ namespace app\domain\entities\graph;
 class Edge
 {
     private $id;
-    private $name;
-    private $vertexes;
-    private $wasDelete;
+    private $weight;
+    private $vertex;
+    private $needToDelete;
+    private $needToChange;
+    private $needToSave;
 
+    public function __construct(int $id, int $weight, Vertex $vertex)
+    {
+        $this->vertex = $vertex;
+        $this->id = $id;
+        $this->weight = $weight;
+        $this->needToDelete = false;
+        $this->needToChange = false;
+        $this->needToSave = false;
+    }
 
     /**
-     * @param int $id
-     * @param string $name
-     * @param Vertex[] $vertexes
+     * @return Vertex
      */
-    public function __construct(int $id, string $name, array $vertexes = [])
+    public function getVertex(): Vertex
     {
-        $this->id = $id;
-        $this->name = $name;
-        $this->wasDelete = false;
-        $this->vertexes = $vertexes;
+        return $this->vertex;
+    }
+
+    public function save(): void
+    {
+        $this->needToSave = true;
+    }
+
+    /**
+     * @return false
+     */
+    public function needToSave()
+    {
+        return $this->needToSave;
+    }
+
+    public function setWeight(int $weight)
+    {
+        $this->weight = $weight;
+        $this->needToChange = true;
     }
 
     public function delete(): void
     {
-        $this->wasDelete = true;
-    }
-
-    public function addVertex(Vertex $vertex)
-    {
-        $this->vertexes[] = $vertex;
-    }
-
-    /**
-     * @return Vertex[]
-     */
-    public function getDeletedVertexes(): array
-    {
-        $deletedVertexes = [];
-
-        foreach ($this->vertexes as $vertex){
-            if ($vertex->wasDelete()){
-                $deletedVertexes[] = $vertex;
-            }
-        }
-
-        return $deletedVertexes;
-    }
-
-    /**
-     * @return Vertex[]
-     */
-    public function getChangedVertexes(): array
-    {
-        $changedVertexes = [];
-
-        foreach ($this->vertexes as $vertex){
-            if ($vertex->wasChanged()){
-                $changedVertexes[] = $vertex;
-            }
-        }
-
-        return $changedVertexes;
+        $this->needToDelete = true;
     }
 
     /**
@@ -75,24 +63,21 @@ class Edge
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName(): string
+    public function needToChange(): bool
     {
-        return $this->name;
+        return $this->needToChange;
+    }
+
+    public function needToDelete(): bool
+    {
+        return $this->needToDelete;
     }
 
     /**
-     * @return array
+     * @return int
      */
-    public function getVertexes(): array
+    public function getWeight(): int
     {
-        return $this->vertexes;
-    }
-
-    public function wasDelete(): bool
-    {
-        return $this->wasDelete;
+        return $this->weight;
     }
 }

@@ -23,7 +23,7 @@ class GraphController extends Controller
         $behaviors = parent::behaviors();
         $behaviors['authenticator'] = [
             'class' => Bearer::class,
-            'except' => ['login', 'signup']
+            'except' => ['create']
         ];
 
         return $behaviors;
@@ -31,6 +31,7 @@ class GraphController extends Controller
 
     public function actionCreate()
     {
+        $params = \Yii::$app->getRequest()->getBodyParams();
 
     }
 }

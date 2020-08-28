@@ -7,62 +7,103 @@ namespace app\domain\entities\graph;
 class Vertex
 {
     private $id;
-    private $weight;
-    private $edge;
-    private $wasDelete;
-    private $wasChanged;
-
-    public function __construct(int $id, int $weight, Edge $edge)
-    {
-        $this->edge = $edge;
-        $this->id = $id;
-        $this->weight = $weight;
-        $this->wasDelete = false;
-        $this->wasChanged = false;
-    }
+    private $name;
+    private $edges;
+    private $needToDelete;
+    private $needToSave;
 
     /**
-     * @return Edge
+     * @param string $name
+     * @param int|null $id
+     * @param Edge[] $edges
      */
-    public function getEdge(): Edge
+    public function __construct(string $name, ?int $id = null, array $edges = [])
     {
-        return $this->edge;
+        $this->id = $id;
+        $this->name = $name;
+        $this->needToDelete = false;
+        $this->needToSave = false;
+        $this->edges = $edges;
     }
 
-    public function setWeight(int $weight)
+    public function save()
     {
-        $this->weight = $weight;
-        $this->wasChanged = true;
+        $this->needToSave;
+    }
+
+    public function needToSave(): bool
+    {
+        return $this->needToSave;
     }
 
     public function delete(): void
     {
-        $this->wasDelete = true;
+        $this->needToDelete = true;
+    }
+
+    public function addEdge(Edge $edge)
+    {
+        $this->edges[] = $edge;
     }
 
     /**
-     * @return int
+     * @return Edge[]
      */
-    public function getId(): int
+    public function getDeletedEdges(): array
+    {
+        $deletedEdges = [];
+
+        foreach ($this->edges as $edge){
+            if ($edge->needToDelete()){
+                $deletedEdges[] = $edge;
+            }
+        }
+
+        return $deletedEdges;
+    }
+
+    /**
+     * @return Edge[]
+     */
+    public function getChangedEdges(): array
+    {
+        $changedEdges = [];
+
+        foreach ($this->edges as $edge){
+            if ($edge->needToChange()){
+                $changedEdges[] = $edge;
+            }
+        }
+
+        return $changedEdges;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function wasChanged(): bool
+    /**
+     * @return string
+     */
+    public function getName(): string
     {
-        return $this->wasChanged;
-    }
-
-    public function wasDelete(): bool
-    {
-        return $this->wasDelete;
+        return $this->name;
     }
 
     /**
-     * @return int
+     * @return Edge[]
      */
-    public function getWeight(): int
+    public function getEdges(): array
     {
-        return $this->weight;
+        return $this->edges;
+    }
+
+    public function needToDelete(): bool
+    {
+        return $this->needToDelete;
     }
 }

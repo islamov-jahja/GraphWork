@@ -45,8 +45,8 @@ class Edge extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'first_vertex_id' => 'First Vertex ID',
-            'second_vertex_id' => 'Second Vertex ID',
+            'first_vertex_id' => 'First Edge ID',
+            'second_vertex_id' => 'Second Edge ID',
             'weight' => 'Weight',
         ];
     }

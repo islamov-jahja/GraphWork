@@ -1,9 +1,11 @@
 <?php
 
+use app\domain\repositories\IGraphRepository;
 use app\domain\repositories\IUserRepository;
 use app\domain\services\IGraphService;
 use app\domain\services\IUserService;
 use app\infrastructure\persistance\User;
+use app\infrastructure\repositories\graph\GraphRepository;
 use app\infrastructure\repositories\user\UserRepository;
 use app\infrastructure\services\graph\GraphService;
 use app\infrastructure\services\user\UserService;
@@ -24,6 +26,7 @@ $config = [
             IGraphService::class => ['class' => GraphService::class],
             IUserService::class => ['class' => UserService::class],
             IUserRepository::class => ['class' => UserRepository::class],
+            IGraphRepository::class => ['class' => GraphRepository::class],
         ],
     ],
     'components' => [
@@ -68,13 +71,7 @@ $config = [
             'rules' => [
                 'POST signup' => 'user/signup',
                 'POST login' => 'user/login',
-                'POST logout' => 'user/logout',
-                [
-                    'controller' => 'graph',
-                    'extraPatterns' => [
-                        'POST' => 'create',
-                    ],
-                ]
+                'POST logout' => 'user/logout'
             ],
         ],
 

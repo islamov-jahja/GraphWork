@@ -11,23 +11,25 @@ class Graph
 {
     private $id;
     private $name;
-    private $edges;
+    private $vertexes;
     private $user;
-    private $wasDelete;
+    private $needToDelete;
+    private $needToSave;
 
     /**
-     * @param int $id
      * @param string $name
      * @param User|null $user
-     * @param Edge[] $edges
+     * @param int|null $id
+     * @param Vertex[] $vertexes
      */
-    public function __construct(int $id, string $name, ?User $user, array $edges = [])
+    public function __construct(string $name, ?User $user, ?int $id = null, array $vertexes = [])
     {
         $this->id = $id;
         $this->name = $name;
-        $this->edges = $edges;
+        $this->vertexes = $vertexes;
         $this->user = $user;
-        $this->wasDelete = false;
+        $this->needToDelete = false;
+        $this->needToSave = false;
     }
 
     /**
@@ -38,14 +40,24 @@ class Graph
         return $this->user;
     }
 
-    public function delete(): void
+    public function save(): void
     {
-        $this->wasDelete = true;
+        $this->needToSave = true;
     }
 
-    public function wasDelete(): bool
+    public function needToSave()
     {
-        return $this->wasDelete;
+        return $this->needToSave;
+    }
+
+    public function delete(): void
+    {
+        $this->needToDelete = true;
+    }
+
+    public function needToDelete(): bool
+    {
+        return $this->needToDelete;
     }
 
     /**
@@ -57,33 +69,33 @@ class Graph
     }
 
     /**
-     * @return Edge[]
+     * @return Vertex[]
      */
-    public function getEdges(): array
+    public function getVertexes(): array
     {
-        return $this->edges;
+        return $this->vertexes;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * @param int $vertexId
+     * @param int $edgeId
      * @param $weight
      * @return void
      * @throws NotFoundException
      */
-    public function changeWeightOfVertex(int $vertexId, $weight)
+    public function changeWeightOfEdge(int $edgeId, $weight)
     {
-        foreach ($this->edges as $edge){
-            foreach ($edge->getVertexes() as $vertex){
-                if ($vertex->getId() === $vertexId){
-                    $vertex->setWeight($weight);
+        foreach ($this->vertexes as $vertex){
+            foreach ($vertex->getEdges() as $edge){
+                if ($edge->getId() === $edgeId){
+                    $edge->setWeight($weight);
                     return;
                 }
             }
@@ -93,63 +105,47 @@ class Graph
     }
 
     /**
-     * @return Vertex[]
-     */
-    public function getChangedVertexes(): array
-    {
-        $changedVertexes = [];
-
-        foreach ($this->edges as $edge){
-            $changedVertexes = array_merge($changedVertexes, $edge->getChangedVertexes());
-        }
-
-        return $changedVertexes;
-    }
-
-    /**
      * @return Edge[]
      */
-    public function getDeletedEdges()
+    public function getEdgesToChange(): array
     {
-        $deletedEdges = [];
+        $edgesToDelete = [];
 
-        foreach ($this->edges as $edge){
-            if ($edge->wasDelete()){
-                $deletedEdges[] = $edge;
-            }
+        foreach ($this->vertexes as $edge){
+            $edgesToDelete = array_merge($edgesToDelete, $edge->getChangedEdges());
         }
 
-        return $deletedEdges;
+        return $edgesToDelete;
     }
 
     /**
      * @return Vertex[]
      */
-    public function getDeletedVertexes()
+    public function getVertexesToDelete()
     {
         $deletedVertexes = [];
 
-        foreach ($this->edges as $edge){
-            $deletedVertexes = array_merge($deletedVertexes, $edge->getDeletedVertexes());
+        foreach ($this->vertexes as $edge){
+            if ($edge->needToDelete()){
+                $deletedVertexes[] = $edge;
+            }
         }
 
         return $deletedVertexes;
     }
 
     /**
-     * @param int $edgeId
-     * @throws NotFoundException
+     * @return Edge[]
      */
-    public function deleteEdge(int $edgeId)
+    public function getEdgesToDelete()
     {
-        foreach ($this->edges as $edge){
-            if ($edge->getId() === $edgeId){
-                $edge->delete();
-                return;
-            }
+        $deletedEdges = [];
+
+        foreach ($this->vertexes as $edge){
+            $deletedEdges = array_merge($deletedEdges, $edge->getDeletedEdges());
         }
 
-        throw new NotFoundException('Данная вершина не найдена');
+        return $deletedEdges;
     }
 
     /**
@@ -158,10 +154,26 @@ class Graph
      */
     public function deleteVertex(int $vertexId)
     {
-        foreach ($this->edges as $edge){
-            foreach ($edge->getVertexes() as $vertex){
-                if ($vertex->getId() === $vertexId){
-                    $this->deletePairOfVertex($edge->getId(), $vertex);
+        foreach ($this->vertexes as $vertex){
+            if ($vertex->getId() === $vertexId){
+                $vertex->delete();
+                return;
+            }
+        }
+
+        throw new NotFoundException('Данная вершина не найдена');
+    }
+
+    /**
+     * @param int $edgeId
+     * @throws NotFoundException
+     */
+    public function deleteEdge(int $edgeId)
+    {
+        foreach ($this->vertexes as $vertex){
+            foreach ($vertex->getEdges() as $edge){
+                if ($edge->getId() === $edgeId){
+                    $this->deletePairOfEdges($vertex->getId(), $edge);
                     return;
                 }
             }
@@ -170,13 +182,14 @@ class Graph
         throw new NotFoundException('Такого ребра не существует');
     }
 
-    private function deletePairOfVertex(int $edgeId ,Vertex $vertex){
-        $vertex->delete();
-        $edge = $vertex->getEdge();
+    private function deletePairOfEdges(int $vertexId , Edge $edge){
+        $edge->delete();
+        $vertex = $edge->getVertex();
 
-        foreach ($edge->getVertexes() as $vertex){
-            if ($vertex->getEdge()->getId() === $edgeId){
-                $vertex->delete();
+        foreach ($vertex->getEdges() as $edge){
+            if ($edge->getVertex()->getId() === $vertexId){
+                $edge->delete();
+                return;
             }
         }
     }

@@ -36,7 +36,7 @@ class UserRepository implements IUserRepository
             throw new WrongEmailOrPasswordException('Неверный логин или пароль');
         }
 
-        return new User($user->name, $user->password, $user->email, $user->token);
+        return new User($user->name, $user->password, $user->email, $user->token, $user->id);
     }
 
     public function update(User $user): void
@@ -56,6 +56,6 @@ class UserRepository implements IUserRepository
             throw new NotFoundException();
         }
 
-        return new User($user->name, $user->password, $user->email, $user->token);
+        return new User($user->name, $user->password, $user->email, $user->token, $user->id);
     }
 }

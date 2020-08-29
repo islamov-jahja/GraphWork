@@ -89,6 +89,8 @@
       <path value="$PROJECT_DIR$/GraphServer/vendor/sebastian/comparator" />
       <path value="$PROJECT_DIR$/GraphServer/vendor/sebastian/diff" />
       <path value="$PROJECT_DIR$/GraphServer/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/GraphServer/vendor/zircote/swagger-php" />
+      <path value="$PROJECT_DIR$/GraphServer/vendor/doctrine/annotations" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />

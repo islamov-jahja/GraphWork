@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * @OA\Info(title="Test work graph", version="0.1")
+ * @OA\Server(url="http://tattelekomgraph/GraphServer/")
+ * @OA\SecurityScheme(
+ *   securityScheme="token",
+ *   type="apiKey",
+ *   name="Authorization",
+ *   in="header"
+ * )
+ */
 
 namespace app\controllers;
 
@@ -38,6 +48,30 @@ class GraphController extends Controller
         return $behaviors;
     }
 
+    /**
+     * @OA\Post (
+     *   tags={"Graph"},
+     *   path="/graph",
+     *   description="create graph",
+     *   security={{"bearerAuth":{}}},
+     *   @OA\RequestBody(
+     *     @OA\JsonContent(
+     *     @OA\Property(
+     *          property="name",
+     *          type="string",
+     *      )
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=201,
+     *     description="created graph"
+     *   ),
+     *   @OA\Response(
+     *     response=400,
+     *     description="bad request"
+     *   )
+     * )
+     */
     public function actionCreate()
     {
         $params = \Yii::$app->getRequest()->getBodyParams();
@@ -51,11 +85,55 @@ class GraphController extends Controller
         }
     }
 
+    /**
+     * @OA\Delete (
+     *   tags={"Graph"},
+     *   path="/graph/{id}",
+     *   description="delete graph",
+     *   security={{"bearerAuth":{}}},
+     *   @OA\Response(
+     *     response=200,
+     *     description="deleted"
+     *   ),
+     *   @OA\Response(
+     *     response=404,
+     *     description="graph not found"
+     *   )
+     * )
+     */
     public function actionDelete(int $id)
     {
         $this->graphService->delete($id);
     }
 
+    /**
+     * @OA\Post (
+     *   tags={"Graph"},
+     *   path="/graph/{id}/vertex",
+     *   description="create vertex",
+     *   security={{"bearerAuth":{}}},
+     *   @OA\RequestBody(
+     *     @OA\JsonContent(
+     *     @OA\Property(
+     *          property="name",
+     *          type="string",
+     *      )
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=201,
+     *     description="created"
+     *   ),
+     *   @OA\Response(
+     *     response=404,
+     *     description="graph not found"
+     *   ),
+     *   @OA\Response(
+     *     response=400,
+     *     description="bad request"
+     *   )
+     * )
+     */
     public function actionCreatevertex(int $id)
     {
         $params = \Yii::$app->request->getBodyParams();
@@ -70,12 +148,64 @@ class GraphController extends Controller
         }
     }
 
+    /**
+     * @OA\Delete (
+     *   tags={"Graph"},
+     *   path="/graph/{id}/vertex/{vertexId}",
+     *   description="delete vertex",
+     *   security={{"bearerAuth":{}}},
+     *   @OA\Response(
+     *     response=200,
+     *     description="deleted"
+     *   ),
+     *   @OA\Response(
+     *     response=404,
+     *     description="graph not found, vertex not found"
+     *   )
+     * )
+     */
     public function actionDeletevertex(int $id, int $vertexId)
     {
         $this->graphService->deleteVertex($vertexId, $id);
         return \Yii::$app->response->setStatusCode(200);
     }
 
+    /**
+     * @OA\Post (
+     *   tags={"Graph"},
+     *   path="/graph/{id}/edge",
+     *   description="create edge",
+     *   security={{"bearerAuth":{}}},
+     *   @OA\RequestBody(
+     *     @OA\JsonContent(
+     *     @OA\Property(
+     *          property="weight",
+     *          type="integer",
+     *      ),
+     *     @OA\Property(
+     *          property="firstVertexId",
+     *          type="integer",
+     *      ),
+     *     @OA\Property(
+     *          property="secondVertexId",
+     *          type="integer",
+     *      )
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=201,
+     *     description="created"
+     *   ),
+     *   @OA\Response(
+     *     response=404,
+     *     description="graph not found"
+     *   ),
+     *   @OA\Response(
+     *     response=400,
+     *     description="bad request"
+     *   )
+     * )
+     */
     public function actionCreateedge(int $id)
     {
         $params = \Yii::$app->request->getBodyParams();
@@ -94,29 +224,132 @@ class GraphController extends Controller
         }
     }
 
+    /**
+     * @OA\Delete (
+     *   tags={"Graph"},
+     *   path="/graph/{id}/edge/{edgeId}",
+     *   description="delete edge",
+     *   security={{"bearerAuth":{}}},
+     *   @OA\Response(
+     *     response=200,
+     *     description="deleted"
+     *   ),
+     *   @OA\Response(
+     *     response=404,
+     *     description="graph not found, edge not found"
+     *   )
+     * )
+     */
     public function actionDeleteedge(int $id, int $edgeId)
     {
         $this->graphService->deleteEdge($edgeId, $id);
         return \Yii::$app->response->setStatusCode(200);
     }
 
+    /**
+     * @OA\Put (
+     *   tags={"Graph"},
+     *   path="/graph/{id}/edge/{edgeId}",
+     *   description="change weight of edge",
+     *   security={{"bearerAuth":{}}},
+     *   @OA\RequestBody(
+     *     @OA\JsonContent(
+     *     @OA\Property(
+     *          property="weight",
+     *          type="integer",
+     *      )
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=202,
+     *     description="weight updated"
+     *   ),
+     *   @OA\Response(
+     *     response=404,
+     *     description="graph not found"
+     *   ),
+     *   @OA\Response(
+     *     response=400,
+     *     description="bad request"
+     *   )
+     * )
+     */
     public function actionSetweight(int $id, int $edgeId, int $weight)
     {
         $this->graphService->changeWeightOfEdge($edgeId, $id, $weight);
         return \Yii::$app->response->setStatusCode(200);
     }
 
+    /**
+     * @OA\Get (
+     *   tags={"Graph"},
+     *   path="/graph/{id}",
+     *   description="get graph",
+     *   security={{"bearerAuth":{}}},
+     *   @OA\Response(
+     *     response=200,
+     *     description="graph",
+     *     @OA\Schema (
+     *          type="object",
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=404,
+     *     description="graph not found"
+     *   )
+     * )
+     */
     public function actionGet(int $id)
     {
         $graph = $this->graphService->get($id);
         return $graph->toArray();
     }
 
+    /**
+     * @OA\Get (
+     *   tags={"Graph"},
+     *   path="/graph/{id}/firstVertex/{firstVertexId}/secondVertex/{secondVertexId}",
+     *   description="get short way for 2 points",
+     *   security={{"bearerAuth":{}}},
+     *   @OA\Response(
+     *     response=200,
+     *     description="array of values",
+     *     @OA\Schema (
+     *          type="array",
+     *          @OA\Items(type="integer")
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=404,
+     *     description="graph not found, vertexes not found"
+     *   )
+     * )
+     */
     public function actionShortway(int $id, int $firstVertexId, int $secondVertexId)
     {
         return $this->graphService->getShortWay($id, $firstVertexId, $secondVertexId);
     }
 
+    /**
+     * @OA\Get (
+     *   tags={"Graph"},
+     *   path="/graph/limit/{limit}/page/{page}",
+     *   description="get list of graphs without vertexes",
+     *   security={{"bearerAuth":{}}},
+     *   @OA\Response(
+     *     response=200,
+     *     description="array of graphs",
+     *     @OA\Schema (
+     *          type="array",
+     *          @OA\Items(type="object")
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=404,
+     *     description=""
+     *   )
+     * )
+     */
     public function actionGetall(int $limit, int $page)
     {
         $graphObjects = $this->graphService->getAll($limit, $page);
@@ -129,3 +362,5 @@ class GraphController extends Controller
         return $graphs;
     }
 }
+
+

@@ -1,0 +1,255 @@
+openapi: 3.0.0
+info:
+  title: 'Test work graph'
+  version: '0.1'
+servers:
+  -
+    url: 'http://tattelekomgraph/GraphServer/'
+paths:
+  /graph:
+    post:
+      tags:
+        - Graph
+      description: 'create graph'
+      operationId: 'app\controllers\GraphController::actionCreate'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+              type: object
+      responses:
+        '201':
+          description: 'created graph'
+        '400':
+          description: 'bad request'
+      security:
+        -
+          bearerAuth: []
+  '/graph/{id}':
+    get:
+      tags:
+        - Graph
+      description: 'get graph'
+      operationId: 'app\controllers\GraphController::actionGet'
+      responses:
+        '200':
+          description: graph
+        '404':
+          description: 'graph not found'
+      security:
+        -
+          bearerAuth: []
+    delete:
+      tags:
+        - Graph
+      description: 'delete graph'
+      operationId: 'app\controllers\GraphController::actionDelete'
+      responses:
+        '200':
+          description: deleted
+        '404':
+          description: 'graph not found'
+      security:
+        -
+          bearerAuth: []
+  '/graph/{id}/vertex':
+    post:
+      tags:
+        - Graph
+      description: 'create vertex'
+      operationId: 'app\controllers\GraphController::actionCreatevertex'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+              type: object
+      responses:
+        '201':
+          description: created
+        '404':
+          description: 'graph not found'
+        '400':
+          description: 'bad request'
+      security:
+        -
+          bearerAuth: []
+  '/graph/{id}/vertex/{vertexId}':
+    delete:
+      tags:
+        - Graph
+      description: 'delete vertex'
+      operationId: 'app\controllers\GraphController::actionDeletevertex'
+      responses:
+        '200':
+          description: deleted
+        '404':
+          description: 'graph not found, vertex not found'
+      security:
+        -
+          bearerAuth: []
+  '/graph/{id}/edge':
+    post:
+      tags:
+        - Graph
+      description: 'create edge'
+      operationId: 'app\controllers\GraphController::actionCreateedge'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                weight:
+                  type: integer
+                firstVertexId:
+                  type: integer
+                secondVertexId:
+                  type: integer
+              type: object
+      responses:
+        '201':
+          description: created
+        '404':
+          description: 'graph not found'
+        '400':
+          description: 'bad request'
+      security:
+        -
+          bearerAuth: []
+  '/graph/{id}/edge/{edgeId}':
+    put:
+      tags:
+        - Graph
+      description: 'change weight of edge'
+      operationId: 'app\controllers\GraphController::actionSetweight'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                weight:
+                  type: integer
+              type: object
+      responses:
+        '202':
+          description: 'weight updated'
+        '404':
+          description: 'graph not found'
+        '400':
+          description: 'bad request'
+      security:
+        -
+          bearerAuth: []
+    delete:
+      tags:
+        - Graph
+      description: 'delete edge'
+      operationId: 'app\controllers\GraphController::actionDeleteedge'
+      responses:
+        '200':
+          description: deleted
+        '404':
+          description: 'graph not found, edge not found'
+      security:
+        -
+          bearerAuth: []
+  '/graph/{id}/firstVertex/{firstVertexId}/secondVertex/{secondVertexId}':
+    get:
+      tags:
+        - Graph
+      description: 'get short way for 2 points'
+      operationId: 'app\controllers\GraphController::actionShortway'
+      responses:
+        '200':
+          description: 'array of values'
+        '404':
+          description: 'graph not found, vertexes not found'
+      security:
+        -
+          bearerAuth: []
+  '/graph/limit/{limit}/page/{page}':
+    get:
+      tags:
+        - Graph
+      description: 'get list of graphs without vertexes'
+      operationId: 'app\controllers\GraphController::actionGetall'
+      responses:
+        '200':
+          description: 'array of graphs'
+        '404':
+          description: ''
+      security:
+        -
+          bearerAuth: []
+  /user/signup:
+    post:
+      tags:
+        - User
+      operationId: 'app\controllers\UserController::actionSignup'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              type: object
+      responses:
+        '200':
+          description: 'successfully signup'
+        '400':
+          description: 'bad request'
+  /user/login:
+    post:
+      tags:
+        - User
+      operationId: 'app\controllers\UserController::actionLogin'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              type: object
+      responses:
+        '200':
+          description: token
+          content:
+            application/json:
+              schema:
+                properties:
+                  accessToken: { type: string }
+                type: object
+        '400':
+          description: 'bad request'
+  /user/logout:
+    post:
+      tags:
+        - User
+      operationId: 'app\controllers\UserController::actionLogout'
+      responses:
+        '200':
+          description: token
+        '401':
+          description: unauthorized
+      security:
+        -
+          bearerAuth: []
+components:
+  securitySchemes:
+    token:
+      type: apiKey
+      name: Authorization
+      in: header

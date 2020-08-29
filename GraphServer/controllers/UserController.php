@@ -30,6 +30,37 @@ class UserController extends Controller
         return $behaviors;
     }
 
+
+    /**
+     * @OA\Post (
+     *   tags={"User"},
+     *   path="/user/signup",
+     *   @OA\RequestBody(
+     *     @OA\JsonContent(
+     *     @OA\Property(
+     *          property="name",
+     *          type="string",
+     *      ),
+     *     @OA\Property(
+     *          property="email",
+     *          type="string",
+     *      ),
+     *      @OA\Property(
+     *          property="password",
+     *          type="string",
+     *      ),
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=200,
+     *     description="successfully signup",
+     *   ),
+     *   @OA\Response(
+     *     response=400,
+     *     description="bad request",
+     *   )
+     * )
+     */
     public function actionSignup()
     {
         $params = \Yii::$app->getRequest()->getBodyParams();
@@ -43,6 +74,38 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @OA\Post (
+     *   tags={"User"},
+     *   path="/user/login",
+     *   @OA\RequestBody(
+     *     @OA\JsonContent(
+     *     @OA\Property(
+     *          property="email",
+     *          type="string",
+     *      ),
+     *      @OA\Property(
+     *          property="password",
+     *          type="string",
+     *      ),
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=200,
+     *     description="token",
+     *     @OA\JsonContent(
+     *     @OA\Property(
+     *          property="accessToken",
+     *          type="string",
+     *      )
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=400,
+     *     description="bad request"
+     *   )
+     * )
+     */
     public function actionLogin()
     {
         $params = \Yii::$app->getRequest()->getBodyParams();
@@ -56,6 +119,22 @@ class UserController extends Controller
         }
     }
 
+
+    /**
+     * @OA\Post (
+     *   tags={"User"},
+     *   path="/user/logout",
+     *   security={{"bearerAuth":{}}},
+     *   @OA\Response(
+     *     response=200,
+     *     description="token"
+     *   ),
+     *   @OA\Response(
+     *     response=401,
+     *     description="unauthorized"
+     *   )
+     * )
+     */
     public function actionLogout()
     {
         $this->userService->logout();

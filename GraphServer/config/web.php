@@ -81,7 +81,8 @@ $config = [
                 'POST graph/<id:\d+>/edge' => 'graph/createedge',
                 'DELETE graph/<id:\d+>/edge/<edgeId:\d+>' => 'graph/deleteedge',
                 'PUT graph/<id:\d+>/edge/<edgeId:\d+>/weight/<weight:\d+>' => 'graph/setweight',
-                'GET graph/<id:\d+>/firstVertex/<firstVertexId:\d+>/secondVertex/<secondVertexId:\d+>' => 'graph/shortway'
+                'GET graph/<id:\d+>/firstVertex/<firstVertexId:\d+>/secondVertex/<secondVertexId:\d+>' => 'graph/shortway',
+                'GET swagger' => 'swagger/swagger'
             ],
         ],
 

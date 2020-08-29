@@ -21,6 +21,7 @@
       <excludeFolder url="file://$MODULE_DIR$/GraphServer/vendor/codeception/stub" />
       <excludeFolder url="file://$MODULE_DIR$/GraphServer/vendor/codeception/verify" />
       <excludeFolder url="file://$MODULE_DIR$/GraphServer/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/GraphServer/vendor/doctrine/annotations" />
       <excludeFolder url="file://$MODULE_DIR$/GraphServer/vendor/doctrine/instantiator" />
       <excludeFolder url="file://$MODULE_DIR$/GraphServer/vendor/doctrine/lexer" />
       <excludeFolder url="file://$MODULE_DIR$/GraphServer/vendor/egulias/email-validator" />
@@ -90,6 +91,7 @@
       <excludeFolder url="file://$MODULE_DIR$/GraphServer/vendor/yiisoft/yii2-faker" />
       <excludeFolder url="file://$MODULE_DIR$/GraphServer/vendor/yiisoft/yii2-gii" />
       <excludeFolder url="file://$MODULE_DIR$/GraphServer/vendor/yiisoft/yii2-swiftmailer" />
+      <excludeFolder url="file://$MODULE_DIR$/GraphServer/vendor/zircote/swagger-php" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

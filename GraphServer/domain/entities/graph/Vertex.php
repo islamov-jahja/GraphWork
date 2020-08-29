@@ -28,7 +28,7 @@ class Vertex
 
     public function save()
     {
-        $this->needToSave;
+        $this->needToSave = true;
     }
 
     public function needToSave(): bool

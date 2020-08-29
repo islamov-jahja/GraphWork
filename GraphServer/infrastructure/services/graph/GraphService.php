@@ -5,13 +5,14 @@ namespace app\infrastructure\services\graph;
 
 
 use app\domain\entities\graph\Graph;
-use app\domain\exceptions\AccessIsDeniedException;
+use app\domain\entities\graph\Vertex;
 use app\domain\exceptions\NotFoundException;
 use app\domain\repositories\IGraphRepository;
 use app\domain\repositories\IUserRepository;
 use app\domain\services\IGraphService;
 use app\infrastructure\helpers\AuthHelper;
 use app\infrastructure\services\graph\dto\GraphDTO;
+use app\infrastructure\services\graph\dto\VertexDTO;
 
 class GraphService implements IGraphService
 {
@@ -46,26 +47,36 @@ class GraphService implements IGraphService
 
     public function addEdge()
     {
-        // TODO: Implement addEdge() method.
-    }
-
-    public function deleteEdge(int $edgeId)
-    {
 
     }
 
-    public function addVertex()
+    public function deleteEdge(int $edgeId, int $graphId)
     {
-
+        $graph = $this->graphRepository->getById($graphId);
+        $graph->deleteEdge($edgeId);
+        $this->graphRepository->delete($graph);
     }
 
-    public function deleteVertex(int $vertexId)
+    public function addVertex(VertexDTO $vertexDTO)
     {
-        // TODO: Implement deleteVertex() method.
+        $graph = $this->graphRepository->getById($vertexDTO->getGraphId());
+        $vertex = new Vertex($vertexDTO->getName());
+        $vertex->save();
+        $graph->addVertex($vertex);
+        $this->graphRepository->save($graph);
     }
 
-    public function changeWeightOfVertex(int $vertexId, int $weight)
+    public function deleteVertex(int $vertexId, int $graphId)
     {
-        // TODO: Implement changeWeightOfVertex() method.
+        $graph = $this->graphRepository->getById($graphId);
+        $graph->deleteVertex($vertexId);
+        $this->graphRepository->delete($graph);
+    }
+
+    public function changeWeightOfEdge(int $edgeId, int $graphId, int $weight)
+    {
+        $graph = $this->graphRepository->getById($graphId);
+        $graph->changeWeightOfEdge($edgeId, $weight);
+        $this->graphRepository->changeWeightOfEdges($graph);
     }
 }

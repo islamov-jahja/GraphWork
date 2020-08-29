@@ -73,7 +73,9 @@ $config = [
                 'POST login' => 'user/login',
                 'POST logout' => 'user/logout',
                 'POST graph' => 'graph/create',
-                'DELETE graph/<id:\d+>' => 'graph/delete'
+                'DELETE graph/<id:\d+>' => 'graph/delete',
+                'POST graph/<id:\d+>/vertex' => 'graph/createvertex',
+                'DELETE graph/<id:\d+>/vertex/<vertexId:\d+>' => 'graph/deletevertex'
             ],
         ],
 

@@ -9,7 +9,9 @@ use app\domain\exceptions\NotFoundException;
 use app\domain\repositories\IGraphRepository;
 use app\infrastructure\persistance\Edge;
 use app\infrastructure\persistance\Vertex;
+use Codeception\PHPUnit\Constraint\Page;
 use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 class GraphRepository implements IGraphRepository
 {
@@ -27,6 +29,7 @@ class GraphRepository implements IGraphRepository
             if ($vertex->needToSave()){
                 $vertexObject = new Vertex();
                 $vertexObject->name = $vertex->getName();
+                $vertexObject->graph_id = $graph->getId();
                 $vertexObject->save();
             }
         }
@@ -86,15 +89,104 @@ class GraphRepository implements IGraphRepository
         }
 
         $graph = new Graph($graphObject->name, $graphObject->user_id, $graphId);
-        $results = Vertex::find()
-            ->leftJoin(Edge::class, 'vertex.id = edge.first_vertex_id')
-            ->where(['vertex.graph_id' => $graphId]);
+        $results = (new \yii\db\Query())
+            ->select([
+                '"edge".id as edgeId',
+                '"edge".first_vertex_id',
+                '"edge".second_vertex_id',
+                '"edge".weight',
+                '"vertex".id',
+                '"vertex".name'
+            ])
+            ->from('"vertex"')
+            ->leftJoin('"edge"', '"edge".first_vertex_id = "vertex".id')
+            ->where(['"vertex".graph_id' => $graphId])
+            ->all();
 
         $this->saveVertexes($results, $graph);
+
         return $graph;
     }
 
-    private function saveVertexes(ActiveQuery $results, Graph $graph)
+    /**
+     * @param ActiveRecord[] $results
+     * @param Graph $graph
+     */
+    private function saveVertexes(array $results, Graph $graph)
     {
+        $oldFirstVertexId = -1;
+        $vertex = null;
+
+        foreach ($results as $result){
+
+            if ($result['first_vertex_id'] !== $oldFirstVertexId && $vertex == null){
+                $vertex = new \app\domain\entities\graph\Vertex($result['name'], $result['id']);
+            }
+
+            if ($this->vertexExistsOnGraph($graph, $vertex)){
+                continue;
+            }
+
+            if ($result['fist_vertex_id'] === $oldFirstVertexId && $oldFirstVertexId !== null){
+                continue;
+            }
+
+            if ($result['first_vertex_id'] === null){
+                $graph->addVertex($vertex);
+                $oldFirstVertexId = $result['first_vertex_id'];
+                continue;
+            }
+
+            $edges = $this->getEdgesOfVertex($results, $result['id'], $graph);
+            foreach ($edges as $edge){
+                $vertex->addEdge($edge);
+            }
+
+            $graph->addVertex($vertex);
+
+            $oldFirstVertexId = $result['first_vertex_id'];
+        }
+    }
+
+    private function getVertex(array $results, int $vertexId, Graph $graph): \app\domain\entities\graph\Vertex
+    {
+        foreach ($results as $result){
+            if ($result['id'] === $vertexId){
+                $edges = $this->getEdgesOfVertex($results, $vertexId, $graph);
+                $vertex = new \app\domain\entities\graph\Vertex($result['name'], $vertexId, $edges);
+
+                if (!$this->vertexExistsOnGraph($graph, $vertex)){
+                    $graph->addVertex($vertex);
+                }
+                return $vertex;
+            }
+        }
+    }
+
+    private function getEdgesOfVertex(array $results, int $vertexId, Graph $graph)
+    {
+        $edges = [];
+
+        foreach ($results as $result){
+            if ($result['first_vertex_id'] === $vertexId){
+                $vertex = $this->getVertex($results, $result['second_vertex_id'], $graph);
+                $edge = new \app\domain\entities\graph\Edge($result['weight'], $vertex, $result['edge_id']);
+                $edges[] = $edge;
+            }
+        }
+
+        return $edges;
+    }
+
+    private function vertexExistsOnGraph(Graph $graph, \app\domain\entities\graph\Vertex $vertex): bool
+    {
+        $vertexes = $graph->getVertexes();
+        foreach ($vertexes as $vertexObject){
+            if ($vertex->getId() === $vertexObject->getId()){
+                return true;
+            }
+        }
+
+        return false;
     }
 }

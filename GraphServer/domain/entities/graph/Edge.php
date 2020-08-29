@@ -13,7 +13,7 @@ class Edge
     private $needToChange;
     private $needToSave;
 
-    public function __construct(int $id, int $weight, Vertex $vertex)
+    public function __construct(int $weight, Vertex $vertex, ?int $id)
     {
         $this->vertex = $vertex;
         $this->id = $id;
@@ -56,9 +56,9 @@ class Edge
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }

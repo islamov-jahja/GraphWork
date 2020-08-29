@@ -17,4 +17,6 @@ interface IGraphService
     public function deleteVertex(int $vertexId, int $graphId);
     public function changeWeightOfEdge(int $edgeId, int $graphId, int $weight);
     public function addEdge(EdgeDTO $edgeDTO);
+
+    public function get(int $id);
 }

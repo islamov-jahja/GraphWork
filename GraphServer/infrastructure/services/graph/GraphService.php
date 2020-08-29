@@ -87,4 +87,10 @@ class GraphService implements IGraphService
         $firstVertex->addDoubleSidedEdge($edge);
         $this->graphRepository->save($graph);
     }
+
+    public function get(int $id)
+    {
+        //$user = AuthHelper::getAuthenticatedUser($this->userRepository);
+        return $this->graphRepository->getById($id);
+    }
 }

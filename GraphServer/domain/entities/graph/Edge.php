@@ -80,4 +80,13 @@ class Edge
     {
         return $this->weight;
     }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'secondVertexId' => $this->vertex->getId(),
+            'weight' => $this->weight
+        ];
+    }
 }

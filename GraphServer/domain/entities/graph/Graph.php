@@ -4,7 +4,6 @@
 namespace app\domain\entities\graph;
 
 
-use app\domain\entities\User;
 use app\domain\exceptions\NotFoundException;
 
 class Graph
@@ -98,11 +97,13 @@ class Graph
     public function changeWeightOfEdge(int $edgeId, $weight)
     {
         foreach ($this->vertexes as $vertex){
-            foreach ($vertex->getEdges() as $edge){
-                if ($edge->getId() === $edgeId){
-                    $edge->setWeight($weight);
-                    return;
-                }
+            $edges = array_filter($vertex->getEdges(), function ($edge) use($edgeId){
+                return $edge->getId() === $edgeId;
+            });
+
+            if (!empty($edges)){
+                $edges[0]->setWeight($weight);
+                return;
             }
         }
 
@@ -176,11 +177,13 @@ class Graph
     public function deleteEdge(int $edgeId)
     {
         foreach ($this->vertexes as $vertex){
-            foreach ($vertex->getEdges() as $edge){
-                if ($edge->getId() === $edgeId){
-                    $this->deletePairOfEdges($vertex->getId(), $edge);
-                    return;
-                }
+            $edges = array_filter($vertex->getEdges(), function ($edge) use($edgeId){
+                return $edge->getId() === $edgeId;
+            });
+
+            if (!empty($edges)){
+                $this->deletePairOfEdges($vertex->getId(), $edges[0]);
+                return;
             }
         }
 
@@ -198,15 +201,27 @@ class Graph
         throw new NotFoundException();
     }
 
-    private function deletePairOfEdges(int $vertexId , Edge $edge){
+    private function deletePairOfEdges(int $vertexId , Edge $edge)
+    {
         $edge->delete();
         $vertex = $edge->getVertex();
 
-        foreach ($vertex->getEdges() as $edge){
-            if ($edge->getVertex()->getId() === $vertexId){
-                $edge->delete();
-                return;
-            }
+        $edges = array_filter($vertex->getEdges(), function ($edge) use($vertexId){
+            return $edge->getVertex()->getId() === $vertexId;
+        });
+
+        $edges[0]->delete();
+    }
+
+    public function toArray()
+    {
+        $graphInArray['name'] = $this->name;
+        $graphInArray['id'] = $this->id;
+
+        foreach ($this->vertexes as $vertex) {
+            $graphInArray['vertexes'][] = $vertex->toArray();
         }
+
+        return $graphInArray;
     }
 }

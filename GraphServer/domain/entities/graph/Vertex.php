@@ -128,4 +128,20 @@ class Vertex
     {
         return $this->needToDelete;
     }
+
+    public function toArray()
+    {
+        $vertexInArray['id'] = $this->id;
+        $vertexInArray['name'] = $this->name;
+
+        foreach ($this->edges as $edge){
+            $vertexInArray['edges'][] = [
+                'id' => $edge->getId(),
+                'secondVertexId' => $edge->getVertex()->getId(),
+                'weight' => $edge->getWeight()
+            ];
+        }
+
+        return $vertexInArray;
+    }
 }

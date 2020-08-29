@@ -27,7 +27,7 @@ class GraphController extends Controller
         $behaviors = parent::behaviors();
         $behaviors['authenticator'] = [
             'class' => Bearer::class,
-            'except' => ['delete', 'create', 'createvertex', 'deletevertex', 'createedge', 'deleteedge']
+            'except' => ['delete', 'create', 'createvertex', 'deletevertex', 'createedge', 'deleteedge', 'setweight', 'get']
         ];
 
         $behaviors['verbFilter'] = [
@@ -97,5 +97,18 @@ class GraphController extends Controller
     public function actionDeleteedge(int $id, int $edgeId)
     {
         $this->graphService->deleteEdge($edgeId, $id);
+        return \Yii::$app->response->setStatusCode(200);
+    }
+
+    public function actionSetweight(int $id, int $edgeId, int $weight)
+    {
+        $this->graphService->changeWeightOfEdge($edgeId, $id, $weight);
+        return \Yii::$app->response->setStatusCode(200);
+    }
+
+    public function actionGet(int $id)
+    {
+        $graph = $this->graphService->get($id);
+        return $graph->toArray();
     }
 }

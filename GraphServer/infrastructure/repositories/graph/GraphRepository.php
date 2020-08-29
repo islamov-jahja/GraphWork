@@ -114,79 +114,25 @@ class GraphRepository implements IGraphRepository
      */
     private function saveVertexes(array $results, Graph $graph)
     {
-        $oldFirstVertexId = -1;
-        $vertex = null;
-
         foreach ($results as $result){
+            $vertex = $this->getVertex($result['id'], $graph);
 
-            if ($result['first_vertex_id'] !== $oldFirstVertexId && $vertex == null){
-                $vertex = new \app\domain\entities\graph\Vertex($result['name'], $result['id']);
+            if ($result['first_vertex_id'] !== null){
+                $edge = new \app\domain\entities\graph\Edge($result['weight'],
+                        $this->getVertex($result['second_vertex_id'], $graph), $result['edgeId']);
+                $vertex->addOneSidedEdge($edge);
             }
+        }
+    }
 
-            if ($this->vertexExistsOnGraph($graph, $vertex)){
-                continue;
-            }
-
-            if ($result['fist_vertex_id'] === $oldFirstVertexId && $oldFirstVertexId !== null){
-                continue;
-            }
-
-            if ($result['first_vertex_id'] === null){
-                $graph->addVertex($vertex);
-                $oldFirstVertexId = $result['first_vertex_id'];
-                continue;
-            }
-
-            $edges = $this->getEdgesOfVertex($results, $result['id'], $graph);
-            foreach ($edges as $edge){
-                $vertex->addEdge($edge);
-            }
-
+    public function getVertex(int $vertexId, Graph $graph){
+        try{
+            return $graph->getVertexById($vertexId);
+        }catch (NotFoundException $notFoundException){
+            $vertexObject = Vertex::findOne(['id' => $vertexId]);
+            $vertex = new \app\domain\entities\graph\Vertex($vertexObject['name'], $vertexId);
             $graph->addVertex($vertex);
-
-            $oldFirstVertexId = $result['first_vertex_id'];
+            return $vertex;
         }
-    }
-
-    private function getVertex(array $results, int $vertexId, Graph $graph): \app\domain\entities\graph\Vertex
-    {
-        foreach ($results as $result){
-            if ($result['id'] === $vertexId){
-                $edges = $this->getEdgesOfVertex($results, $vertexId, $graph);
-                $vertex = new \app\domain\entities\graph\Vertex($result['name'], $vertexId, $edges);
-
-                if (!$this->vertexExistsOnGraph($graph, $vertex)){
-                    $graph->addVertex($vertex);
-                }
-                return $vertex;
-            }
-        }
-    }
-
-    private function getEdgesOfVertex(array $results, int $vertexId, Graph $graph)
-    {
-        $edges = [];
-
-        foreach ($results as $result){
-            if ($result['first_vertex_id'] === $vertexId){
-                $vertex = $this->getVertex($results, $result['second_vertex_id'], $graph);
-                $edge = new \app\domain\entities\graph\Edge($result['weight'], $vertex, $result['edge_id']);
-                $edges[] = $edge;
-            }
-        }
-
-        return $edges;
-    }
-
-    private function vertexExistsOnGraph(Graph $graph, \app\domain\entities\graph\Vertex $vertex): bool
-    {
-        $vertexes = $graph->getVertexes();
-        foreach ($vertexes as $vertexObject){
-            if ($vertex->getId() === $vertexObject->getId()){
-                return true;
-            }
-        }
-
-        return false;
     }
 }

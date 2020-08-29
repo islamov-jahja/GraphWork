@@ -75,7 +75,9 @@ $config = [
                 'POST graph' => 'graph/create',
                 'DELETE graph/<id:\d+>' => 'graph/delete',
                 'POST graph/<id:\d+>/vertex' => 'graph/createvertex',
-                'DELETE graph/<id:\d+>/vertex/<vertexId:\d+>' => 'graph/deletevertex'
+                'DELETE graph/<id:\d+>/vertex/<vertexId:\d+>' => 'graph/deletevertex',
+                'POST graph/<id:\d+>/edge' => 'graph/createedge',
+                'DELETE graph/<id:\d+>/edge/<edgeId:\d+>' => 'graph/deleteedge'
             ],
         ],
 

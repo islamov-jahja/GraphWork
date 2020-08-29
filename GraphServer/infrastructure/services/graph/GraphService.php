@@ -4,6 +4,7 @@
 namespace app\infrastructure\services\graph;
 
 
+use app\domain\entities\graph\Edge;
 use app\domain\entities\graph\Graph;
 use app\domain\entities\graph\Vertex;
 use app\domain\exceptions\NotFoundException;
@@ -11,6 +12,7 @@ use app\domain\repositories\IGraphRepository;
 use app\domain\repositories\IUserRepository;
 use app\domain\services\IGraphService;
 use app\infrastructure\helpers\AuthHelper;
+use app\infrastructure\services\graph\dto\EdgeDTO;
 use app\infrastructure\services\graph\dto\GraphDTO;
 use app\infrastructure\services\graph\dto\VertexDTO;
 
@@ -25,7 +27,7 @@ class GraphService implements IGraphService
         $this->userRepository = $userRepository;
     }
 
-    public function create(GraphDTO $graphDTO)
+    public function addGraph(GraphDTO $graphDTO)
     {
         try{
             $user = AuthHelper::getAuthenticatedUser($this->userRepository);
@@ -43,11 +45,6 @@ class GraphService implements IGraphService
         $graph = $this->graphRepository->getById($graphId);
         $graph->delete();
         $this->graphRepository->delete($graph);
-    }
-
-    public function addEdge()
-    {
-
     }
 
     public function deleteEdge(int $edgeId, int $graphId)
@@ -78,5 +75,16 @@ class GraphService implements IGraphService
         $graph = $this->graphRepository->getById($graphId);
         $graph->changeWeightOfEdge($edgeId, $weight);
         $this->graphRepository->changeWeightOfEdges($graph);
+    }
+
+    public function addEdge(EdgeDTO $edgeDTO)
+    {
+        $graph = $this->graphRepository->getById($edgeDTO->getGraphId());
+        $firstVertex = $graph->getVertexById($edgeDTO->getFirstVertexId());
+        $secondVertex = $graph->getVertexById($edgeDTO->getSecondVertexId());
+        $edge = new Edge($edgeDTO->getWeight(), $secondVertex, null);
+        $edge->save();
+        $firstVertex->addDoubleSidedEdge($edge);
+        $this->graphRepository->save($graph);
     }
 }

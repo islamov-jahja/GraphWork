@@ -41,11 +41,33 @@ class Vertex
         $this->needToDelete = true;
     }
 
-    public function addEdge(Edge $edge)
+    public function addDoubleSidedEdge(Edge $edge)
     {
+        foreach ($this->edges as $edgeObject){
+            if ($edgeObject->getVertex()->getId() === $edge->getVertex()->getId()){
+                throw new \Exception('Данное ребро существует');
+            }
+        }
+
+        $toVertex = $edge->getVertex();
+        $secondEdge = new Edge($edge->getWeight(), $this, null);
+        $secondEdge->save();
+        $toVertex->addOneSidedEdge($secondEdge);
+
         $this->edges[] = $edge;
     }
 
+
+    public function addOneSidedEdge(Edge $edge)
+    {
+        foreach ($this->edges as $edgeObject){
+            if ($edgeObject->getVertex()->getId() === $edge->getVertex()->getId()){
+                throw new \Exception('Данное ребро существует');
+            }
+        }
+
+        $this->edges[] = $edge;
+    }
     /**
      * @return Edge[]
      */

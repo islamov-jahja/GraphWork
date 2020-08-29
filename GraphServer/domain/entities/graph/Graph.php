@@ -187,6 +187,17 @@ class Graph
         throw new NotFoundException('Такого ребра не существует');
     }
 
+    public function getVertexById(int $vertexId): Vertex
+    {
+        foreach ($this->vertexes as $vertex){
+            if ($vertex->getId() === $vertexId){
+                return $vertex;
+            }
+        }
+
+        throw new NotFoundException();
+    }
+
     private function deletePairOfEdges(int $vertexId , Edge $edge){
         $edge->delete();
         $vertex = $edge->getVertex();

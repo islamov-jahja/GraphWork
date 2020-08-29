@@ -11,7 +11,7 @@ class Graph
     private $id;
     private $name;
     private $vertexes;
-    private $user;
+    private $userId;
     private $needToDelete;
     private $needToSave;
 
@@ -26,7 +26,7 @@ class Graph
         $this->id = $id;
         $this->name = $name;
         $this->vertexes = $vertexes;
-        $this->user = $userId;
+        $this->userId = $userId;
         $this->needToDelete = false;
         $this->needToSave = false;
     }
@@ -34,9 +34,9 @@ class Graph
     /**
      * @return int|null
      */
-    public function getUser(): ?int
+    public function getUserId(): ?int
     {
-        return $this->user;
+        return $this->userId;
     }
 
     public function save(): void
@@ -217,6 +217,7 @@ class Graph
     {
         $graphInArray['name'] = $this->name;
         $graphInArray['id'] = $this->id;
+        $graphInArray['userId'] = $this->userId;
 
         foreach ($this->vertexes as $vertex) {
             $graphInArray['vertexes'][] = $vertex->toArray();

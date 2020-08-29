@@ -30,11 +30,11 @@ class AccessFilter extends ActionFilter
 
         try{
             $user = AuthHelper::getAuthenticatedUser($this->userRepository);
-            if ($graph->getUser() !== null && $graph->getUser() !== $user->getId()){
+            if ($graph->getUserId() !== null && $graph->getUserId() !== $user->getId()){
                 throw new AccessIsDeniedException('Доступ запрещен');
             }
         }catch (\Exception $exception){
-            if ($graph->getUser() !== null){
+            if ($graph->getUserId() !== null){
                 throw new AccessIsDeniedException('Доступ запрещен');
             }
         }

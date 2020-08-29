@@ -45,7 +45,7 @@ $config = [
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            'errorAction' => 'error/error',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
@@ -73,13 +73,15 @@ $config = [
                 'POST login' => 'user/login',
                 'POST logout' => 'user/logout',
                 'POST graph' => 'graph/create',
+                'GET graph/limit/<limit:\d+>/page/<page:\d+>' => 'graph/getall',
                 'GET graph/<id:\d+>' => 'graph/get',
                 'DELETE graph/<id:\d+>' => 'graph/delete',
                 'POST graph/<id:\d+>/vertex' => 'graph/createvertex',
                 'DELETE graph/<id:\d+>/vertex/<vertexId:\d+>' => 'graph/deletevertex',
                 'POST graph/<id:\d+>/edge' => 'graph/createedge',
                 'DELETE graph/<id:\d+>/edge/<edgeId:\d+>' => 'graph/deleteedge',
-                'PUT graph/<id:\d+>/edge/<edgeId:\d+>/weight/<weight:\d+>' => 'graph/setweight'
+                'PUT graph/<id:\d+>/edge/<edgeId:\d+>/weight/<weight:\d+>' => 'graph/setweight',
+                'GET graph/<id:\d+>/firstVertex/<firstVertexId:\d+>/secondVertex/<secondVertexId:\d+>' => 'graph/shortway'
             ],
         ],
 

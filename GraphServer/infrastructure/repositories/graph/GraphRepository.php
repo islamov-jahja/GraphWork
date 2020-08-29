@@ -16,12 +16,36 @@ use yii\db\ActiveRecord;
 class GraphRepository implements IGraphRepository
 {
 
+    /**
+     * @param int|null $userId
+     * @param int $limit
+     * @param int $offset
+     * @return array
+     */
+    public function getWithoutVertexesFilteredBy(?int $userId, int $limit, int $offset): array
+    {
+        $graphObjects = \app\infrastructure\persistance\Graph::find()
+            ->select('*')
+            ->where('user_id is null OR user_id = :userId', ['userId' => $userId])
+            ->orderBy('id')
+            ->limit($limit)
+            ->offset($offset)
+            ->all();
+
+        $graphs = [];
+        foreach ($graphObjects as $graphObject){
+            $graphs[] = new Graph($graphObject->name, $graphObject->user_id, $graphObject->id);
+        }
+
+        return $graphs;
+    }
+
     public function save(Graph $graph)
     {
         if ($graph->needToSave()){
             $graphObject = new \app\infrastructure\persistance\Graph();
             $graphObject->name = $graph->getName();
-            $graphObject->user_id = $graph->getUser();
+            $graphObject->user_id = $graph->getUserId();
             $graphObject->save();
         }
 

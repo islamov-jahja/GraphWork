@@ -27,12 +27,12 @@ class GraphController extends Controller
         $behaviors = parent::behaviors();
         $behaviors['authenticator'] = [
             'class' => Bearer::class,
-            'except' => ['delete', 'create', 'createvertex', 'deletevertex', 'createedge', 'deleteedge', 'setweight', 'get']
+            'except' => ['delete', 'create', 'createvertex', 'deletevertex', 'createedge', 'deleteedge', 'setweight', 'get', 'shortway', 'getall']
         ];
 
         $behaviors['verbFilter'] = [
             'class' => AccessFilter::class,
-            'except' => ['create']
+            'except' => ['create', 'getall']
         ];
 
         return $behaviors;
@@ -110,5 +110,22 @@ class GraphController extends Controller
     {
         $graph = $this->graphService->get($id);
         return $graph->toArray();
+    }
+
+    public function actionShortway(int $id, int $firstVertexId, int $secondVertexId)
+    {
+        return $this->graphService->getShortWay($id, $firstVertexId, $secondVertexId);
+    }
+
+    public function actionGetall(int $limit, int $page)
+    {
+        $graphObjects = $this->graphService->getAll($limit, $page);
+        $graphs = [];
+
+        foreach ($graphObjects as $graphObject){
+            $graphs[] = $graphObject->toArray();
+        }
+
+        return $graphs;
     }
 }

@@ -9,8 +9,7 @@ use app\domain\exceptions\NotFoundException;
 use app\domain\repositories\IGraphRepository;
 use app\infrastructure\persistance\Edge;
 use app\infrastructure\persistance\Vertex;
-use Codeception\PHPUnit\Constraint\Page;
-use yii\db\ActiveQuery;
+use Exception;
 use yii\db\ActiveRecord;
 
 class GraphRepository implements IGraphRepository
@@ -104,6 +103,7 @@ class GraphRepository implements IGraphRepository
      * @param int $graphId
      * @return Graph
      * @throws NotFoundException
+     * @throws Exception
      */
     public function getById(int $graphId): Graph
     {
@@ -135,6 +135,7 @@ class GraphRepository implements IGraphRepository
     /**
      * @param ActiveRecord[] $results
      * @param Graph $graph
+     * @throws Exception
      */
     private function saveVertexes(array $results, Graph $graph)
     {

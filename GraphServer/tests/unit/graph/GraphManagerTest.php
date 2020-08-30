@@ -9,6 +9,8 @@ use app\domain\entities\graph\Graph;
 use app\domain\entities\graph\Vertex;
 use app\infrastructure\helpers\GraphManager;
 use Codeception\Test\Unit;
+use Workerman\Connection\AsyncTcpConnection;
+use Workerman\Worker;
 
 class GraphManagerTest extends Unit
 {

@@ -91,6 +91,7 @@
       <path value="$PROJECT_DIR$/GraphServer/vendor/swiftmailer/swiftmailer" />
       <path value="$PROJECT_DIR$/GraphServer/vendor/zircote/swagger-php" />
       <path value="$PROJECT_DIR$/GraphServer/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/GraphServer/vendor/workerman/workerman" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />

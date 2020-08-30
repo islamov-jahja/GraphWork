@@ -8,6 +8,7 @@ use app\domain\exceptions\AccessIsDeniedException;
 use app\domain\repositories\IGraphRepository;
 use app\domain\repositories\IUserRepository;
 use app\infrastructure\helpers\AuthHelper;
+use Workerman\Worker;
 use yii\base\ActionFilter;
 
 class AccessFilter extends ActionFilter
@@ -19,7 +20,6 @@ class AccessFilter extends ActionFilter
     {
         $this->graphRepository = $graphRepository;
         $this->userRepository = $userRepository;
-
         parent::__construct($config);
     }
 

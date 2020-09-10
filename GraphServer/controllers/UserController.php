@@ -19,12 +19,31 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
+    public function actions()
+    {
+        return [
+            'options' => [
+                'class' => 'yii\rest\OptionsAction',
+            ],
+        ];
+    }
+
     public function behaviors()
     {
         $behaviors = parent::behaviors();
         $behaviors['authenticator'] = [
             'class' => Bearer::class,
             'except' => ['login', 'signup']
+        ];
+
+        $behaviors['corsFilter'] = [
+            'class' => \yii\filters\Cors::className(),
+            'cors' => [
+                'Origin' => ['*'],
+                'Access-Control-Request-Method' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
+                'Access-Control-Allow-Credentials' => false,
+            ],
+
         ];
 
         return $behaviors;
@@ -66,10 +85,10 @@ class UserController extends Controller
         $params = \Yii::$app->getRequest()->getBodyParams();
         $user = new UserSignupDTO($params['name'] ?? null, $params['password'] ?? null, $params['email'] ?? null);
 
-        if ($user->validate()){
+        if ($user->validate()) {
             $this->userService->signup($user);
             return \Yii::$app->response->setStatusCode(201);
-        }else{
+        } else {
             return \Yii::$app->response->setStatusCode(400)->data = ['errors' => $user->getErrors()];
         }
     }
@@ -114,7 +133,7 @@ class UserController extends Controller
         if ($loginDto->validate()) {
             $accessToken = $this->userService->login($loginDto);
             return ['accessToken' => $accessToken];
-        }else{
+        } else {
             return \Yii::$app->response->setStatusCode(400)->data = ['errors' => $loginDto->getErrors()];
         }
     }

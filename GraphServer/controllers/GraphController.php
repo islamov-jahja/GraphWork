@@ -20,7 +20,10 @@ use app\infrastructure\services\graph\dto\GraphDTO;
 use app\infrastructure\services\graph\dto\VertexDTO;
 use app\middleware\AccessFilter;
 use app\middleware\Bearer;
+use app\middleware\Cors;
+use yii\filters\ContentNegotiator;
 use yii\rest\Controller;
+use yii\web\Response;
 
 class GraphController extends Controller
 {
@@ -32,17 +35,46 @@ class GraphController extends Controller
         parent::__construct($id, $module, $config);
     }
 
+    public function actions()
+    {
+        return [
+            'options' => [
+                'class' => 'yii\rest\OptionsAction',
+            ],
+        ];
+    }
+
     public function behaviors()
     {
         $behaviors = parent::behaviors();
+        unset($behaviors['authenticator']);
+        $behaviors['contentNegotiator'] = [
+            'class' => ContentNegotiator::className(),
+            'formats' => [
+                'application/json' => Response::FORMAT_JSON,
+            ],
+        ];
+        $behaviors['corsFilter'] = [
+            'class' => Cors::className(),
+            'cors'  => [
+                // restrict access to domains:
+                'Origin'                           => '*',
+                'Access-Control-Request-Method'    => ['POST', 'GET', 'OPTIONS', 'PUT', 'DELETE'],
+                'Access-Control-Allow-Credentials' => true,
+                'Access-Control-Max-Age'           => 3600,                 // Cache (seconds)
+                'Access-Control-Allow-Headers' => ['authorization','X-Requested-With','content-type']
+            ],
+        ];
+
         $behaviors['authenticator'] = [
             'class' => Bearer::class,
-            'except' => ['delete', 'create', 'createvertex', 'deletevertex', 'createedge', 'deleteedge', 'setweight', 'get', 'shortway', 'getall']
+            'except' => ['delete', 'create', 'createvertex', 'deletevertex', 'createedge', 'deleteedge', 'setweight', 'get', 'shortway', 'getall', 'options']
         ];
+
 
         $behaviors['verbFilter'] = [
             'class' => AccessFilter::class,
-            'except' => ['create', 'getall']
+            'except' => ['create', 'getall', 'options']
         ];
 
         return $behaviors;
@@ -80,7 +112,7 @@ class GraphController extends Controller
         if ($graphDTO->validate()) {
             $this->graphService->addGraph($graphDTO);
             return \Yii::$app->response->setStatusCode(201);
-        }else{
+        } else {
             return \Yii::$app->response->setStatusCode(400)->data = ['errors' => $graphDTO->getErrors()];
         }
     }
@@ -140,10 +172,10 @@ class GraphController extends Controller
 
         $vertexDTO = new VertexDTO($params['name'], $id);
 
-        if ($vertexDTO->validate()){
+        if ($vertexDTO->validate()) {
             $this->graphService->addVertex($vertexDTO);
             return \Yii::$app->response->setStatusCode(201);
-        }else{
+        } else {
             return \Yii::$app->response->setStatusCode(400)->data = ['errors' => $vertexDTO->getErrors()];
         }
     }
@@ -216,10 +248,10 @@ class GraphController extends Controller
             $id
         );
 
-        if ($edgeDTO->validate()){
+        if ($edgeDTO->validate()) {
             $this->graphService->addEdge($edgeDTO);
             return \Yii::$app->response->setStatusCode(201);
-        }else{
+        } else {
             return \Yii::$app->response->setStatusCode(400)->data = ['errors' => $edgeDTO->getErrors()];
         }
     }
@@ -355,7 +387,7 @@ class GraphController extends Controller
         $graphObjects = $this->graphService->getAll($limit, $page);
         $graphs = [];
 
-        foreach ($graphObjects as $graphObject){
+        foreach ($graphObjects as $graphObject) {
             $graphs[] = $graphObject->toArray();
         }
 

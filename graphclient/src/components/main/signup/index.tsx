@@ -1,7 +1,7 @@
 import React from 'react';
-import './../../index.css';
-import {Header} from "../header";
-import {Footer} from "../footer";
+import '../../../index.css';
+import {Header} from "../../header";
+import {Footer} from "../../footer";
 import {Redirect} from "react-router-dom";
 
 export const Signup: React.FC = () => {

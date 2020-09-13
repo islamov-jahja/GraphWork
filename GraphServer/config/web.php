@@ -66,13 +66,14 @@ $config = [
         'db' => $db,
 
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
+            'enablePrettyUrl'     => true,
+            'showScriptName'      => false,
             'rules' => [
                 'POST signup' => 'user/signup',
                 'POST login' => 'user/login',
                 'POST logout' => 'user/logout',
                 'POST graph' => 'graph/create',
+                'OPTIONS <path:.+>' => 'graph/options',
                 'GET graph/limit/<limit:\d+>/page/<page:\d+>' => 'graph/getall',
                 'GET graph/<id:\d+>' => 'graph/get',
                 'DELETE graph/<id:\d+>' => 'graph/delete',

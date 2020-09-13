@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import './../../index.css';
-import {Header} from "../header";
-import {Footer} from "../footer";
+import '../../../index.css';
+import {Header} from "../../header";
+import {Footer} from "../../footer";
 import {Redirect} from 'react-router-dom'
-import {postData} from "../../functions/login";
+import {postData} from "../../../functions/functions";
 
 export const Login: React.FC = () => {
     const [email, setEmail] = useState<string>();

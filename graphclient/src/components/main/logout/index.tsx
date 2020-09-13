@@ -1,7 +1,7 @@
 import React from 'react';
-import './../../index.css';
+import '../../../index.css';
 import {Redirect} from 'react-router-dom'
-import {postData} from "../../functions/login";
+import {postData} from "../../../functions/functions";
 
 export const Logout: React.FC = () => {
     if (localStorage.getItem('token') === null){

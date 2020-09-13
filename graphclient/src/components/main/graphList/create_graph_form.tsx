@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import './../../../index.css';
-import {postData} from "../../../functions/login";
+import '../../../index.css';
+import {postData} from "../../../functions/functions";
 import {Redirect} from "react-router-dom";
 
 export const GraphCreating: React.FC = () => {
@@ -11,9 +11,10 @@ export const GraphCreating: React.FC = () => {
 
     const onCreateGraph = async (event: React.KeyboardEvent) => {
         if (event.key == 'Enter') {
-            const data = await postData('http://tattelekomgraph/GraphServer/graph?XDEBUG_SESSION_START=PHPSTORM', {
+            event.preventDefault()
+            const data = await postData('http://tattelekomgraph/GraphServer/graph', {
                 name: graphName
-            }, '');
+            }, localStorage.getItem('token'));
         }
     }
 

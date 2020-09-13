@@ -18,3 +18,8 @@ main {
   flex: 1 0 auto;
 }
 
+.graph{
+  text-align: center;
+  height: auto;
+}
+

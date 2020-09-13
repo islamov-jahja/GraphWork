@@ -20,7 +20,6 @@ use app\infrastructure\services\graph\dto\GraphDTO;
 use app\infrastructure\services\graph\dto\VertexDTO;
 use app\middleware\AccessFilter;
 use app\middleware\Bearer;
-use app\middleware\Cors;
 use yii\filters\ContentNegotiator;
 use yii\rest\Controller;
 use yii\web\Response;
@@ -47,34 +46,26 @@ class GraphController extends Controller
     public function behaviors()
     {
         $behaviors = parent::behaviors();
+
         unset($behaviors['authenticator']);
-        $behaviors['contentNegotiator'] = [
-            'class' => ContentNegotiator::className(),
-            'formats' => [
-                'application/json' => Response::FORMAT_JSON,
-            ],
-        ];
         $behaviors['corsFilter'] = [
-            'class' => Cors::className(),
-            'cors'  => [
-                // restrict access to domains:
-                'Origin'                           => '*',
-                'Access-Control-Request-Method'    => ['POST', 'GET', 'OPTIONS', 'PUT', 'DELETE'],
+            'class' => \yii\filters\Cors::className(),
+            'cors' => [
+                'Origin' => ['*'],
+                'Access-Control-Request-Method' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
                 'Access-Control-Allow-Credentials' => true,
-                'Access-Control-Max-Age'           => 3600,                 // Cache (seconds)
-                'Access-Control-Allow-Headers' => ['authorization','X-Requested-With','content-type']
             ],
+
+        ];
+
+        $behaviors['verbFilter'] = [
+            'class' => AccessFilter::class,
+            'except' => ['create', 'getall', 'options']
         ];
 
         $behaviors['authenticator'] = [
             'class' => Bearer::class,
             'except' => ['delete', 'create', 'createvertex', 'deletevertex', 'createedge', 'deleteedge', 'setweight', 'get', 'shortway', 'getall', 'options']
-        ];
-
-
-        $behaviors['verbFilter'] = [
-            'class' => AccessFilter::class,
-            'except' => ['create', 'getall', 'options']
         ];
 
         return $behaviors;

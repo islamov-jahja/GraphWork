@@ -7,10 +7,10 @@ import {
 } from "react-router-dom"
 
 import {Home} from "../home";
-import {Login} from "../login";
-import {Signup} from "../signup";
-import {GraphComponent} from "../graph";
-import {Logout} from "../logout";
+import {Login} from "../main/login";
+import {Signup} from "../main/signup";
+import {GraphComponent} from "../main/graph";
+import {Logout} from "../main/logout";
 
 export const Index: React.FC = () => {
     return (

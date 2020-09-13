@@ -1,7 +1,7 @@
 import React from 'react';
-import './../../index.css';
-import {GraphList} from "./body/graph_list";
-import {GraphCreating} from "./body/create_graph_form";
+import '../../../index.css';
+import {GraphList} from "./graph_list";
+import {GraphCreating} from "./create_graph_form";
 
 export const Main: React.FC = () => {
 

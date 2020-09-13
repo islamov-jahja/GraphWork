@@ -7,6 +7,7 @@ use app\domain\services\IUserService;
 use app\infrastructure\services\user\dto\LoginDTO;
 use app\infrastructure\services\user\dto\UserSignupDTO;
 use app\middleware\Bearer;
+use yii\filters\AccessControl;
 use yii\rest\Controller;
 
 class UserController extends Controller
@@ -31,21 +32,22 @@ class UserController extends Controller
     public function behaviors()
     {
         $behaviors = parent::behaviors();
-        $behaviors['authenticator'] = [
-            'class' => Bearer::class,
-            'except' => ['login', 'signup']
-        ];
 
+        unset($behaviors['authenticator']);
         $behaviors['corsFilter'] = [
             'class' => \yii\filters\Cors::className(),
             'cors' => [
                 'Origin' => ['*'],
                 'Access-Control-Request-Method' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
-                'Access-Control-Allow-Credentials' => false,
+                'Access-Control-Allow-Credentials' => true,
             ],
 
         ];
 
+        $behaviors['authenticator'] = [
+            'class' => Bearer::class,
+            'except' => ['login', 'signup', 'options']
+        ];
         return $behaviors;
     }
 

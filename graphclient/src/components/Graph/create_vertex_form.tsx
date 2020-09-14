@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
-import '../../../index.css';
-import {postData} from "../../../functions/functions";
-import {Redirect} from "react-router-dom";
-import {StateManager} from '../../../functions/states'
+import {postData} from "../../functions/functions";
+import {StateManager} from '../../functions/states'
 export const CreateVertex: React.FC = () => {
     const [vertexName, setVertexName] = useState<string>()
     const vertexNameChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {

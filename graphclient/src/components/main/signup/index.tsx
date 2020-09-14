@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../../index.css';
-import {Header} from "../../header";
-import {Footer} from "../../footer";
+
 import {Redirect} from "react-router-dom";
 
 export const Signup: React.FC = () => {
@@ -9,11 +8,14 @@ export const Signup: React.FC = () => {
         return (
             <Redirect from='/login' to='/'/>
         );
-    }
+	 }
+	 
+	 const handleReg = () => {
+
+	 }
 
     return (
         <div>
-            <Header/>
             <div className="row">
                 <form className="col s12">
                     <div className="row">
@@ -34,9 +36,9 @@ export const Signup: React.FC = () => {
                             <label htmlFor="password">Пароль</label>
                         </div>
                     </div>
+						  <button className="waves-effect waves-light btn-small" onClick={handleReg}>Зарегистрироваться</button>
                 </form>
             </div>
-            <Footer/>
         </div>
     );
 }

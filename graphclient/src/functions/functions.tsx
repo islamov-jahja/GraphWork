@@ -72,7 +72,7 @@ export const onDoubleClickNode = function (nodeId: any) {
 
 export const onRightClickNode = function (event: any, nodeId: any) {
     let nodeIdOnInt: number = nodeId.split(':')[0];
-    deleteMethod('http://tattelekomgraph/GraphServer/graph/' + localStorage.getItem('graphId') + '/vertex/' + nodeIdOnInt, localStorage.getItem('token'))
+    deleteMethod('http://GraphWork/GraphServer/graph/' + localStorage.getItem('graphId') + '/vertex/' + nodeIdOnInt, localStorage.getItem('token'))
 };
 
 export const onMouseOverNode = function (nodeId: any) {

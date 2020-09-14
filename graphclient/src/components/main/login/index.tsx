@@ -31,7 +31,7 @@ export const Login = (props: any) => {
 
 	const handleLogin = async (e: any) => {
 		e.preventDefault()
-		const data = await postData('http://tattelekomgraph/GraphServer/user/login', {
+		const data = await postData('http://GraphWork/GraphServer/user/login', {
 			email: email,
 			password: password
 		}, '');

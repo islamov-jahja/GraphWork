@@ -22,7 +22,7 @@ export const GraphCreating = (props: any) => {
     const onCreateGraph = async (event: React.KeyboardEvent) => {
         if (event.key == 'Enter') {
             event.preventDefault()
-            const data = await postData('http://tattelekomgraph/GraphServer/graph', {
+            const data = await postData('http://GraphWork/GraphServer/graph', {
                 name: graphName
             }, localStorage.getItem('token'));
             props.graphListWasChanged(!props.graphListChanged)

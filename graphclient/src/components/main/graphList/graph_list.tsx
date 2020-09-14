@@ -11,7 +11,7 @@ export const GraphList = (props: any) => {
     const [graphs, setData] = useState([]);
     useEffect(() => {
         async function getGraphs() {
-            const result = await getData('http://tattelekomgraph/GraphServer/graph/limit/100/page/1', localStorage.getItem('token'))
+            const result = await getData('http://GraphWork/GraphServer/graph/limit/100/page/1', localStorage.getItem('token'))
             setData(result)
         }
 
@@ -19,7 +19,7 @@ export const GraphList = (props: any) => {
     }, [props.graphListChanged]);
 
     const deleteGraph = async (id: number) => {
-        await deleteMethod('http://tattelekomgraph/GraphServer/graph/' + id, localStorage.getItem('token'));
+        await deleteMethod('http://GraphWork/GraphServer/graph/' + id, localStorage.getItem('token'));
         props.graphListWasChanged(!props.graphListChanged)
     }
 

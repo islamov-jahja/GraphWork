@@ -16,7 +16,7 @@ export const CreateVertex = (props: any) => {
     const onCreateVertex = async (event: React.KeyboardEvent) => {
         if (event.key == 'Enter') {
             event.preventDefault()
-            const data = await postData('http://tattelekomgraph/GraphServer/graph/' + localStorage.getItem('graphId') + '/vertex', {
+            const data = await postData('http://GraphWork/GraphServer/graph/' + localStorage.getItem('graphId') + '/vertex', {
                 name: vertexName
             }, localStorage.getItem('token'));
 

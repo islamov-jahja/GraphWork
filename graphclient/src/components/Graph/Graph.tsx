@@ -61,7 +61,7 @@ export const GraphComponent = (props: GraphList) => {
 
 	useEffect(() => {
 		async function getGraph() {
-			const result = await getData('http://tattelekomgraph/GraphServer/graph/' + localStorage.getItem('graphId'), localStorage.getItem('token'))
+			const result = await getData('http://GraphWork/GraphServer/graph/' + localStorage.getItem('graphId'), localStorage.getItem('token'))
 			refreshGraph(result)
 		}
 
@@ -106,7 +106,7 @@ export const GraphComponent = (props: GraphList) => {
 
 	const onDoubleClickNode = async function (nodeId: any) {
 		let vertexId: number = nodeId.split(':')[0]
-		await deleteMethod('http://tattelekomgraph/GraphServer/graph/' + localStorage.getItem('graphId') + '/vertex/' + vertexId, localStorage.getItem('token'))
+		await deleteMethod('http://GraphWork/GraphServer/graph/' + localStorage.getItem('graphId') + '/vertex/' + vertexId, localStorage.getItem('token'))
 		props.graphListWasChanged(!props.graphListChanged)
 	};
 
@@ -118,7 +118,7 @@ export const GraphComponent = (props: GraphList) => {
 		let firstVertexId = activeNodes[0].split(':')[0]
 		let secondVertexId = activeNodes[1].split(':')[0]
 		console.log(weight)
-		await postData('http://tattelekomgraph/GraphServer/graph/' + localStorage.getItem('graphId') + '/edge', {
+		await postData('http://GraphWork/GraphServer/graph/' + localStorage.getItem('graphId') + '/edge', {
 			weight: weight,
 			firstVertexId: firstVertexId,
 			secondVertexId: secondVertexId
@@ -132,7 +132,7 @@ export const GraphComponent = (props: GraphList) => {
 		let secondVertexId = activeNodes[1].split(':')[0]
 		let edgeId = getEdgeId(graph.vertexes, firstVertexId, secondVertexId);
 
-		await deleteMethod('http://tattelekomgraph/GraphServer/graph/' + localStorage.getItem('graphId') + '/edge/' + edgeId, localStorage.getItem('token'))
+		await deleteMethod('http://GraphWork/GraphServer/graph/' + localStorage.getItem('graphId') + '/edge/' + edgeId, localStorage.getItem('token'))
 		props.graphListWasChanged(!props.graphListChanged)
 	};
 
@@ -142,7 +142,7 @@ export const GraphComponent = (props: GraphList) => {
 
 		let edgeId = getEdgeId(graph.vertexes, firstVertexId, secondVertexId);
 
-		await putMethod('http://tattelekomgraph/GraphServer/graph/'
+		await putMethod('http://GraphWork/GraphServer/graph/'
 			+ localStorage.getItem('graphId') + '/edge/' + edgeId + '/weight/' + weight, {
 		}, localStorage.getItem('token'))
 
@@ -155,7 +155,7 @@ export const GraphComponent = (props: GraphList) => {
 
 		let edgeId = getEdgeId(graph.vertexes, firstVertexId, secondVertexId);
 
-		await putMethod('http://tattelekomgraph/GraphServer/graph/'
+		await putMethod('http://GraphWork/GraphServer/graph/'
 			+ localStorage.getItem('graphId') + '/edge/' + edgeId + '/weight/' + weight, {
 		}, localStorage.getItem('token'))
 
@@ -166,7 +166,7 @@ export const GraphComponent = (props: GraphList) => {
 		let firstVertexId = activeNodes[0].split(':')[0]
 		let secondVertexId = activeNodes[1].split(':')[0]
 
-		let data = await getData('http://tattelekomgraph/GraphServer/graph/' + localStorage.getItem('graphId') + '/firstVertex/' + firstVertexId + '/secondVertex/' + secondVertexId, localStorage.getItem('token'))
+		let data = await getData('http://GraphWork/GraphServer/graph/' + localStorage.getItem('graphId') + '/firstVertex/' + firstVertexId + '/secondVertex/' + secondVertexId, localStorage.getItem('token'))
 
 		setWay(data)
 		setActiveNodes(data.way)

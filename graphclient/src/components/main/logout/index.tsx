@@ -9,7 +9,7 @@ export const Logout: React.FC = () => {
             <Redirect from='/logout' to='/'/>
         )
     }
-    postData('http://tattelekomgraph/GraphServer/user/logout', {}, localStorage.getItem('token'));
+    postData('http://GraphWork/GraphServer/user/logout', {}, localStorage.getItem('token'));
     localStorage.removeItem('token');
 
     return (

@@ -2,8 +2,18 @@ import React, {useState} from 'react';
 import '../../../index.css';
 import {postData} from "../../../functions/functions";
 import {Redirect} from "react-router-dom";
+import {
 
-export const GraphCreating: React.FC = () => {
+    useHistory,
+
+} from "react-router-dom";
+
+interface Graph {
+    graphListChanged: boolean,
+    graphListWasChanged: Function
+}
+
+export const GraphCreating = (props: any) => {
     const [graphName, setGraphName] = useState<string>()
     const graphNameChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setGraphName(event.target.value)
@@ -15,6 +25,7 @@ export const GraphCreating: React.FC = () => {
             const data = await postData('http://tattelekomgraph/GraphServer/graph', {
                 name: graphName
             }, localStorage.getItem('token'));
+            props.graphListWasChanged(!props.graphListChanged)
         }
     }
 

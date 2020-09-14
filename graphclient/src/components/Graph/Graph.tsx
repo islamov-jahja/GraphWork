@@ -1,17 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Graph } from 'react-d3-graph';
 import GraphLib from "graph-data-structure";
-import { getData } from "../../functions/functions";
+import {deleteMethod, getData, getEdgeId, postData, putMethod} from "../../functions/functions";
 import { CreateVertex } from "./create_vertex_form";
 import styles from './style.module.css'
-
-const data = {
-	nodes: [{ id: "Harry", nodeColor: '#000' }, { id: "Sally" }, { id: "Alice" }],
-	links: [
-		{ source: "Harry", target: "Sally" },
-		{ source: "Harry", target: "Alice" },
-	],
-};
 
 const myConfig = {
 	highlightDegree: 0,
@@ -30,16 +22,24 @@ const myConfig = {
 		fontSize: 14
 	},
 	link: {
+		labelProperty: (node: any) => {
+			return node.weight
+		},
 		highlightColor: 'lightblue',
 		renderLabel: true
 	}
 };
 
-export const GraphComponent: React.FC = (props) => {
+interface GraphList {
+	graphListChanged: boolean,
+	graphListWasChanged: Function
+}
+
+export const GraphComponent = (props: GraphList) => {
 
 	const [activeNodes, setActiveNodes]: any[] = useState([])
 	const [activeLink, setActiveLink]: any[] = useState([])
-
+	const [weight, setWeight] = useState<any>()
 
 	let id = new URLSearchParams(window.location.search).get("id")
 	if (id != null) {
@@ -65,7 +65,7 @@ export const GraphComponent: React.FC = (props) => {
 		}
 
 		getGraph()
-	}, []);
+	}, [props.graphListChanged]);
 
 	let graphObject = GraphLib()
 
@@ -101,33 +101,83 @@ export const GraphComponent: React.FC = (props) => {
 
 	const onClickLink = (src: any, trg: any) => {
 		setActiveLink([src, trg])
-		console.log(`${src} ${trg}`)
+	}
+
+	const onDoubleClickNode = async function (nodeId: any) {
+		let vertexId: number = nodeId.split(':')[0]
+		await deleteMethod('http://tattelekomgraph/GraphServer/graph/' + localStorage.getItem('graphId') + '/vertex/' + vertexId, localStorage.getItem('token'))
+		props.graphListWasChanged(!props.graphListChanged)
+	};
+
+	function onChangeWeight(event: React.ChangeEvent<HTMLInputElement>) {
+		setWeight(event.target.value)
+	}
+
+	async function createEdge() {
+		let firstVertexId = activeNodes[0].split(':')[0]
+		let secondVertexId = activeNodes[1].split(':')[0]
+		console.log(weight)
+		await postData('http://tattelekomgraph/GraphServer/graph/' + localStorage.getItem('graphId') + '/edge', {
+			weight: weight,
+			firstVertexId: firstVertexId,
+			secondVertexId: secondVertexId
+		}, localStorage.getItem('token'))
+
+		props.graphListWasChanged(!props.graphListChanged)
+	}
+
+	const onRightClickLink = async function (event: any, source: any, target: any) {
+		let firstVertexId = activeNodes[0].split(':')[0]
+		let secondVertexId = activeNodes[1].split(':')[0]
+		let edgeId = getEdgeId(graph.vertexes, firstVertexId, secondVertexId);
+
+		await deleteMethod('http://tattelekomgraph/GraphServer/graph/' + localStorage.getItem('graphId') + '/edge/' + edgeId, localStorage.getItem('token'))
+		props.graphListWasChanged(!props.graphListChanged)
+	};
+
+	async function changeFirstWeight() {
+		let firstVertexId = activeNodes[0].split(':')[0]
+		let secondVertexId = activeNodes[1].split(':')[0]
+
+		let edgeId = getEdgeId(graph.vertexes, firstVertexId, secondVertexId);
+
+		await putMethod('http://tattelekomgraph/GraphServer/graph/'
+			+ localStorage.getItem('graphId') + '/edge/' + edgeId + '/weight/' + weight, {
+		}, localStorage.getItem('token'))
+
+		props.graphListWasChanged(!props.graphListChanged)
+	}
+
+	function changeSecondWeight() {
+
 	}
 
 	return (
 		<>
-			<CreateVertex />
+			<CreateVertex graphListChanged={props.graphListChanged} graphListWasChanged={props.graphListWasChanged}/>
 			<div className={styles.graphWrapper}>
 				{activeLink.length > 0 && (
 					<div style={{marginLeft: '10px'}}>
 						<div>
-							<input type="text" placeholder={`Вес из ${activeLink[0]} в ${activeLink[1]}`} />
+							<input type="text" id="weight" value={weight} onChange={onChangeWeight} placeholder={`Вес из ${activeLink[0]} в ${activeLink[1]}`} />
 						</div>
-						<button className='waves-effect waves-light btn-small'>Изменить вес</button>
+						<button className='waves-effect waves-light btn-small' onClick={changeFirstWeight} >Изменить вес</button>
 
 						<div>
-							<input type="text" placeholder={`Вес из ${activeLink[1]} в ${activeLink[0]}`} />
+							<input type="text" id="weight" value={weight} onChange={onChangeWeight} placeholder={`Вес из ${activeLink[1]} в ${activeLink[0]}`}  />
 						</div>
-						<button className='waves-effect waves-light btn-small'>Изменить вес</button>
+						<button className='waves-effect waves-light btn-small' onClick={changeSecondWeight}>Изменить вес</button>
 					</div>
 				)}
 				{vertexes && (
 					<Graph
 						id='graph-id'
-						data={data}
+						data={graphObject.serialize()}
 						config={myConfig}
 						onClickNode={onClickNode}
 						onClickLink={onClickLink}
+						onDoubleClickNode={onDoubleClickNode}
+						onRightClickLink={onRightClickLink}
 					/>
 				)}
 				<div style={{marginRight: '10px'}}>
@@ -144,8 +194,8 @@ export const GraphComponent: React.FC = (props) => {
 						<>
 							<button className='waves-effect waves-light btn-small'>Вычислить кратчайший путь</button>
 							<div>или</div>
-							<input type="text" placeholder="Укажите вес узла" />
-							<button className='waves-effect waves-light btn-small'>Создать промежуточный узел</button>
+							<input type="text" id="weight" value={weight} onChange={onChangeWeight} placeholder="Укажите вес узла" />
+							<button className='waves-effect waves-light btn-small' onClick={createEdge}>Создать промежуточный узел</button>
 						</>
 					)}
 				</div>

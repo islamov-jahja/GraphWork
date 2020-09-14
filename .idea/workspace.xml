@@ -20,43 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1df9ffe-a532-419f-a187-d1a86395bec3" name="Default Changelist" comment="последние изменения">
-      <change afterPath="$PROJECT_DIR$/graphclient/src/components/Graph/Graph.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphclient/src/components/Graph/create_vertex_form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphclient/src/components/Graph/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphclient/src/components/Graph/style.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphclient/src/components/Layout/Layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphclient/src/components/Layout/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphclient/src/components/Layout/style.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphclient/src/components/app/App.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphclient/src/components/app/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphclient/src/components/app/style.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphclient/src/components/footer/Footer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphclient/src/components/footer/style.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphclient/src/components/home/Home.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphclient/src/components/home/style.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/components/app/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/components/footer/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/components/footer/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/components/header/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/components/header/navbar/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/components/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/components/home/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/components/main/graph/create_vertex_form.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/components/main/graph/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphServer/domain/entities/graph/Edge.php" beforeDir="false" afterPath="$PROJECT_DIR$/GraphServer/domain/entities/graph/Edge.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphclient/src/components/Graph/Graph.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/components/Graph/Graph.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphclient/src/components/Graph/create_vertex_form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/components/Graph/create_vertex_form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphclient/src/components/Layout/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/components/Layout/Layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphclient/src/components/main/graphList/create_graph_form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/components/main/graphList/create_graph_form.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphclient/src/components/main/graphList/graph_list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/components/main/graphList/graph_list.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphclient/src/components/main/graphList/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/components/main/graphList/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/components/main/login/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/components/main/login/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/components/main/logout/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/components/main/logout/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/components/main/signup/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/components/main/signup/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/dto/graph.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/graphclient/src/functions/functions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/functions/functions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/functions/states.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/react-app-env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/react-app-env.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +235,7 @@
       <workItem from="1599868030063" duration="73000" />
       <workItem from="1599868121591" duration="23400000" />
       <workItem from="1599997161997" duration="21210000" />
-      <workItem from="1600040059064" duration="8021000" />
+      <workItem from="1600040059064" duration="19742000" />
     </task>
     <task id="LOCAL-00001" summary="настройки cors">
       <created>1599723663394</created>
@@ -334,54 +307,54 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1599641993968" />
-    <state width="1493" height="288" key="GridCell.Tab.0.bottom" timestamp="1600040012976">
+    <state width="1493" height="152" key="GridCell.Tab.0.bottom" timestamp="1600063558585">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600040012976" />
-    <state width="1493" height="288" key="GridCell.Tab.0.center" timestamp="1600040012976">
+    <state width="1493" height="152" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600063558585" />
+    <state width="1493" height="152" key="GridCell.Tab.0.center" timestamp="1600063558585">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600040012976" />
-    <state width="1493" height="288" key="GridCell.Tab.0.left" timestamp="1600040012976">
+    <state width="1493" height="152" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600063558585" />
+    <state width="1493" height="152" key="GridCell.Tab.0.left" timestamp="1600063558585">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600040012976" />
-    <state width="1493" height="288" key="GridCell.Tab.0.right" timestamp="1600040012976">
+    <state width="1493" height="152" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600063558585" />
+    <state width="1493" height="152" key="GridCell.Tab.0.right" timestamp="1600063558585">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600040012976" />
-    <state width="1493" height="288" key="GridCell.Tab.1.bottom" timestamp="1600040012977">
+    <state width="1493" height="152" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600063558585" />
+    <state width="1493" height="152" key="GridCell.Tab.1.bottom" timestamp="1600063558699">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600040012977" />
-    <state width="1493" height="288" key="GridCell.Tab.1.center" timestamp="1600040012977">
+    <state width="1493" height="152" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600063558699" />
+    <state width="1493" height="152" key="GridCell.Tab.1.center" timestamp="1600063558699">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1600040012977" />
-    <state width="1493" height="288" key="GridCell.Tab.1.left" timestamp="1600040012977">
+    <state width="1493" height="152" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1600063558699" />
+    <state width="1493" height="152" key="GridCell.Tab.1.left" timestamp="1600063558699">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1600040012977" />
-    <state width="1493" height="288" key="GridCell.Tab.1.right" timestamp="1600040012977">
+    <state width="1493" height="152" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1600063558699" />
+    <state width="1493" height="152" key="GridCell.Tab.1.right" timestamp="1600063558699">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1600040012977" />
-    <state width="1493" height="288" key="GridCell.Tab.2.bottom" timestamp="1600040012978">
+    <state width="1493" height="152" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1600063558699" />
+    <state width="1493" height="152" key="GridCell.Tab.2.bottom" timestamp="1600063558423">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600040012978" />
-    <state width="1493" height="288" key="GridCell.Tab.2.center" timestamp="1600040012977">
+    <state width="1493" height="152" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600063558423" />
+    <state width="1493" height="152" key="GridCell.Tab.2.center" timestamp="1600063558423">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1600040012977" />
-    <state width="1493" height="288" key="GridCell.Tab.2.left" timestamp="1600040012977">
+    <state width="1493" height="152" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1600063558423" />
+    <state width="1493" height="152" key="GridCell.Tab.2.left" timestamp="1600063558423">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1600040012977" />
-    <state width="1493" height="288" key="GridCell.Tab.2.right" timestamp="1600040012977">
+    <state width="1493" height="152" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1600063558423" />
+    <state width="1493" height="152" key="GridCell.Tab.2.right" timestamp="1600063558423">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1600040012977" />
+    <state width="1493" height="152" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1600063558423" />
     <state width="1493" height="218" key="GridCell.Tab.3.bottom" timestamp="1599725878410">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -414,10 +387,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1598954262037" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1600051963642">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1600051976752">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1600051963642" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1600051976752" />
     <state x="668" y="273" key="com.intellij.database.actions.DdlActions$CreateObject$1" timestamp="1598516745164">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -434,14 +407,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="545" y="185" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1599724317337" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1600040440398">
+    <state x="425" y="187" key="run.anything.popup" timestamp="1600063024072">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1600040440398" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1599878217869">
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1600063024072" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1600059304612">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1599878217869" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1600059304612" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -502,11 +475,6 @@
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/GraphServer/controllers/ErrorController.php</url>
-          <line>15</line>
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/GraphServer/infrastructure/services/graph/GraphService.php</url>
           <line>59</line>
           <option name="timeStamp" value="47" />
@@ -555,6 +523,186 @@
           <url>file://$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php</url>
           <line>47</line>
           <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/services/graph/GraphService.php</url>
+          <line>82</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/services/graph/GraphService.php</url>
+          <line>83</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/services/graph/GraphService.php</url>
+          <line>85</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/services/graph/GraphService.php</url>
+          <line>84</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/services/graph/GraphService.php</url>
+          <line>87</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/services/graph/GraphService.php</url>
+          <line>88</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php</url>
+          <line>69</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php</url>
+          <line>70</line>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php</url>
+          <line>68</line>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php</url>
+          <line>66</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php</url>
+          <line>67</line>
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php</url>
+          <line>64</line>
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php</url>
+          <line>65</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php</url>
+          <line>63</line>
+          <option name="timeStamp" value="81" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php</url>
+          <line>60</line>
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php</url>
+          <line>62</line>
+          <option name="timeStamp" value="84" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php</url>
+          <line>61</line>
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php</url>
+          <line>56</line>
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php</url>
+          <line>57</line>
+          <option name="timeStamp" value="87" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php</url>
+          <line>51</line>
+          <option name="timeStamp" value="88" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php</url>
+          <line>52</line>
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php</url>
+          <line>53</line>
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php</url>
+          <line>54</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/infrastructure/repositories/graph/GraphRepository.php</url>
+          <line>55</line>
+          <option name="timeStamp" value="94" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/domain/entities/graph/Vertex.php</url>
+          <line>44</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/domain/entities/graph/Vertex.php</url>
+          <line>45</line>
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/domain/entities/graph/Vertex.php</url>
+          <line>46</line>
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/domain/entities/graph/Vertex.php</url>
+          <line>47</line>
+          <option name="timeStamp" value="99" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/domain/entities/graph/Vertex.php</url>
+          <line>49</line>
+          <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/domain/entities/graph/Vertex.php</url>
+          <line>48</line>
+          <option name="timeStamp" value="102" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/domain/entities/graph/Vertex.php</url>
+          <line>51</line>
+          <option name="timeStamp" value="103" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/domain/entities/graph/Vertex.php</url>
+          <line>52</line>
+          <option name="timeStamp" value="104" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/domain/entities/graph/Vertex.php</url>
+          <line>53</line>
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/domain/entities/graph/Vertex.php</url>
+          <line>54</line>
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/controllers/GraphController.php</url>
+          <line>301</line>
+          <option name="timeStamp" value="111" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/GraphServer/controllers/GraphController.php</url>
+          <line>302</line>
+          <option name="timeStamp" value="112" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

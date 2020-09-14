@@ -1,7 +1,13 @@
 import React, {useState} from 'react';
 import {postData} from "../../functions/functions";
 import {StateManager} from '../../functions/states'
-export const CreateVertex: React.FC = () => {
+
+interface GraphList {
+    graphListChanged: boolean,
+    graphListWasChanged: Function
+}
+
+export const CreateVertex = (props: any) => {
     const [vertexName, setVertexName] = useState<string>()
     const vertexNameChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setVertexName(event.target.value)
@@ -14,9 +20,7 @@ export const CreateVertex: React.FC = () => {
                 name: vertexName
             }, localStorage.getItem('token'));
 
-            console.log(StateManager.needLoadGraph);
-            StateManager.needLoadGraph = !StateManager.needLoadGraph
-            console.log(StateManager.needLoadGraph);
+            props.graphListWasChanged(!props.graphListChanged)
         }
     }
 

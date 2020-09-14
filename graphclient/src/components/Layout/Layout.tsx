@@ -10,14 +10,16 @@ import {Logout} from "../main/logout";
 import styles from './style.module.css'
 
 export const Layout = () => {
-	const [tokenExists, setTokenExists] = useState(false)
+	const [tokenExists, setTokenExists] = useState<boolean>(false)
+	const [graphListChanged, graphListWasChanged] = useState<boolean>(false)
+
 	return (
 		<div className={styles.layout}>
 			<Navbar isAuth={tokenExists} />
 			<div className="container">
 				<Switch>
-					<Route path='/' exact >
-						<Home />
+					<Route path='/' exact>
+						<Home graphListChanged={graphListChanged} graphListWasChanged={graphListWasChanged}/>
 					</Route>
 					<Route path='/login' >
 						<Login setTokenExists={setTokenExists}/>
@@ -29,7 +31,7 @@ export const Layout = () => {
 						<Logout />
 					</Route>
 					<Route path='/graph' >
-						<GraphComponent />
+						<GraphComponent graphListChanged={graphListChanged} graphListWasChanged={graphListWasChanged}/>
 					</Route>
 				</Switch>
 			</div>

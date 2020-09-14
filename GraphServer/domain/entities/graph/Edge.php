@@ -37,7 +37,7 @@ class Edge
     }
 
     /**
-     * @return false
+     * @return bool
      */
     public function needToSave()
     {

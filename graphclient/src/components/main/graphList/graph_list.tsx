@@ -2,7 +2,12 @@ import React, {useEffect, useState} from 'react';
 import '../../../index.css';
 import {deleteMethod, getData, postData} from "../../../functions/functions";
 
-export const GraphList: React.FC = () => {
+interface Graph {
+    graphListChanged: boolean,
+    graphListWasChanged: Function
+}
+
+export const GraphList = (props: any) => {
     const [graphs, setData] = useState([]);
     useEffect(() => {
         async function getGraphs() {
@@ -11,10 +16,11 @@ export const GraphList: React.FC = () => {
         }
 
         getGraphs()
-    }, []);
+    }, [props.graphListChanged]);
 
-    const deleteGraph = (id: number) => {
-        deleteMethod('http://tattelekomgraph/GraphServer/graph/' + id, localStorage.getItem('token'));
+    const deleteGraph = async (id: number) => {
+        await deleteMethod('http://tattelekomgraph/GraphServer/graph/' + id, localStorage.getItem('token'));
+        props.graphListWasChanged(!props.graphListChanged)
     }
 
     return (

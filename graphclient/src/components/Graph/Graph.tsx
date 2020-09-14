@@ -40,6 +40,7 @@ export const GraphComponent = (props: GraphList) => {
 	const [activeNodes, setActiveNodes]: any[] = useState([])
 	const [activeLink, setActiveLink]: any[] = useState([])
 	const [weight, setWeight] = useState<any>()
+	const [way, setWay] = useState({weight: Number, way: []})
 
 	let id = new URLSearchParams(window.location.search).get("id")
 	if (id != null) {
@@ -148,8 +149,29 @@ export const GraphComponent = (props: GraphList) => {
 		props.graphListWasChanged(!props.graphListChanged)
 	}
 
-	function changeSecondWeight() {
+	async function changeSecondWeight() {
+		let firstVertexId = activeNodes[1].split(':')[0]
+		let secondVertexId = activeNodes[0].split(':')[0]
 
+		let edgeId = getEdgeId(graph.vertexes, firstVertexId, secondVertexId);
+
+		await putMethod('http://tattelekomgraph/GraphServer/graph/'
+			+ localStorage.getItem('graphId') + '/edge/' + edgeId + '/weight/' + weight, {
+		}, localStorage.getItem('token'))
+
+		props.graphListWasChanged(!props.graphListChanged)
+	}
+
+	async function findWay() {
+		let firstVertexId = activeNodes[0].split(':')[0]
+		let secondVertexId = activeNodes[1].split(':')[0]
+
+		let data = await getData('http://tattelekomgraph/GraphServer/graph/' + localStorage.getItem('graphId') + '/firstVertex/' + firstVertexId + '/secondVertex/' + secondVertexId, localStorage.getItem('token'))
+
+		setWay(data)
+		setActiveNodes(data.way)
+
+		props.graphListWasChanged(!props.graphListChanged)
 	}
 
 	return (
@@ -192,7 +214,7 @@ export const GraphComponent = (props: GraphList) => {
 					{activeNodes.map((i: any) => <h6>{i}</h6>)}
 					{activeNodes.length === 2 && (
 						<>
-							<button className='waves-effect waves-light btn-small'>Вычислить кратчайший путь</button>
+							<button className='waves-effect waves-light btn-small' onClick={findWay}>Вычислить кратчайший путь</button>
 							<div>или</div>
 							<input type="text" id="weight" value={weight} onChange={onChangeWeight} placeholder="Укажите вес узла" />
 							<button className='waves-effect waves-light btn-small' onClick={createEdge}>Создать промежуточный узел</button>

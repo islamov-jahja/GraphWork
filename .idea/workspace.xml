@@ -19,15 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1df9ffe-a532-419f-a187-d1a86395bec3" name="Default Changelist" comment="закончил работу">
+    <list default="true" id="c1df9ffe-a532-419f-a187-d1a86395bec3" name="Default Changelist" comment="сменил хост">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/components/Graph/Graph.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/components/Graph/Graph.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/components/Graph/create_vertex_form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/components/Graph/create_vertex_form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/components/main/graphList/create_graph_form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/components/main/graphList/create_graph_form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/components/main/graphList/graph_list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/components/main/graphList/graph_list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/components/main/login/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/components/main/login/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/components/main/logout/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/components/main/logout/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/functions/functions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/functions/functions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphclient/src/components/main/signup/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/components/main/signup/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,7 +228,8 @@
       <workItem from="1599868121591" duration="23400000" />
       <workItem from="1599997161997" duration="21210000" />
       <workItem from="1600040059064" duration="20615000" />
-      <workItem from="1600064614038" duration="164000" />
+      <workItem from="1600064614038" duration="341000" />
+      <workItem from="1600065942250" duration="666000" />
     </task>
     <task id="LOCAL-00001" summary="настройки cors">
       <created>1599723663394</created>
@@ -264,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600064511189</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="сменил хост">
+      <created>1600064797920</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1600064797920</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -287,7 +289,8 @@
     <MESSAGE value="последние изменения" />
     <MESSAGE value="практически все сделал" />
     <MESSAGE value="закончил работу" />
-    <option name="LAST_COMMIT_MESSAGE" value="закончил работу" />
+    <MESSAGE value="сменил хост" />
+    <option name="LAST_COMMIT_MESSAGE" value="сменил хост" />
   </component>
   <component name="WindowStateProjectService">
     <state x="151" y="66" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598532902776">
@@ -402,10 +405,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1598954262037" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1600064523513">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1600064802080">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1600064523513" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1600064802080" />
     <state x="668" y="273" key="com.intellij.database.actions.DdlActions$CreateObject$1" timestamp="1598516745164">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -418,10 +421,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1598520800705" />
-    <state x="478" y="11" width="579" height="801" key="find.popup" timestamp="1600064764928">
+    <state x="478" y="11" width="579" height="801" key="find.popup" timestamp="1600064781253">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="478" y="11" width="579" height="801" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1600064764928" />
+    <state x="478" y="11" width="579" height="801" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1600064781253" />
     <state x="545" y="185" key="refactoring.ChangeSignatureDialog" timestamp="1599724317337">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

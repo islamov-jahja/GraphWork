@@ -19,9 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1df9ffe-a532-419f-a187-d1a86395bec3" name="Default Changelist" comment="сменил хост">
+    <list default="true" id="c1df9ffe-a532-419f-a187-d1a86395bec3" name="Default Changelist" comment="добавил регистрацию">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclient/src/components/main/signup/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/graphclient/src/components/main/signup/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +144,8 @@
     <property name="DatabaseDriversLRU" value="postgresql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="database.data.extractors.current.export.id" value="CSV-Groovy.csv.groovy" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/GraphServer/dump" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.HTML" />
@@ -229,7 +229,10 @@
       <workItem from="1599997161997" duration="21210000" />
       <workItem from="1600040059064" duration="20615000" />
       <workItem from="1600064614038" duration="341000" />
-      <workItem from="1600065942250" duration="666000" />
+      <workItem from="1600065942250" duration="731000" />
+      <workItem from="1600084093426" duration="744000" />
+      <workItem from="1600103172614" duration="1843000" />
+      <workItem from="1600169803719" duration="398000" />
     </task>
     <task id="LOCAL-00001" summary="настройки cors">
       <created>1599723663394</created>
@@ -266,7 +269,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600064797920</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="добавил регистрацию">
+      <created>1600066653359</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1600066653359</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,7 +300,8 @@
     <MESSAGE value="практически все сделал" />
     <MESSAGE value="закончил работу" />
     <MESSAGE value="сменил хост" />
-    <option name="LAST_COMMIT_MESSAGE" value="сменил хост" />
+    <MESSAGE value="добавил регистрацию" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавил регистрацию" />
   </component>
   <component name="WindowStateProjectService">
     <state x="151" y="66" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598532902776">
@@ -317,30 +328,34 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1598750933775" />
+    <state x="449" y="167" key="DUMP_DIALOG_DIMENSION_KEY" timestamp="1600170166229">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="449" y="167" key="DUMP_DIALOG_DIMENSION_KEY/0.0.1536.824@0.0.1536.824" timestamp="1600170166229" />
     <state x="438" y="191" key="EditFileWatcherDialog" timestamp="1598962739370">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="438" y="191" key="EditFileWatcherDialog/0.0.1536.824@0.0.1536.824" timestamp="1598962739370" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1599641993968">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1600170071507">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1599641993968" />
-    <state width="746" height="152" key="GridCell.Tab.0.bottom" timestamp="1600064568410">
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1600170071507" />
+    <state width="501" height="210" key="GridCell.Tab.0.bottom" timestamp="1600170166270">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="152" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600064568410" />
-    <state width="746" height="152" key="GridCell.Tab.0.center" timestamp="1600064568410">
+    <state width="501" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600170166270" />
+    <state width="501" height="210" key="GridCell.Tab.0.center" timestamp="1600170166269">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="152" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600064568410" />
-    <state width="746" height="152" key="GridCell.Tab.0.left" timestamp="1600064568409">
+    <state width="501" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600170166269" />
+    <state width="501" height="210" key="GridCell.Tab.0.left" timestamp="1600170166269">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="152" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600064568409" />
-    <state width="746" height="152" key="GridCell.Tab.0.right" timestamp="1600064568410">
+    <state width="501" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600170166269" />
+    <state width="501" height="210" key="GridCell.Tab.0.right" timestamp="1600170166269">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="152" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600064568410" />
+    <state width="501" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600170166269" />
     <state width="746" height="152" key="GridCell.Tab.1.bottom" timestamp="1600064568410">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -405,10 +420,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1598954262037" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1600064802080">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1600066659915">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1600064802080" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1600066659915" />
     <state x="668" y="273" key="com.intellij.database.actions.DdlActions$CreateObject$1" timestamp="1598516745164">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
